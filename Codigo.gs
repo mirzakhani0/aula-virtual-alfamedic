@@ -3,7 +3,7 @@
  * Permite llamadas desde sitios web externos
  ******************************************************/
 
-const SPREADSHEET_ID = '1DkmOqVSRxLPkRZ6ytNQA9HfhVmPndrp47Ts3Rzl21lU';
+const SPREADSHEET_ID = '1oAZeBz4b3IFI0MLqPbHiUDFsJnJD5vZHXl3WLqJPrp4';
 /**
  * Maneja las peticiones POST (para subir datos)
  */

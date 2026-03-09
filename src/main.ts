@@ -92,9 +92,9 @@ function setupAdmin() {
 
         uploadStatus!.innerText = '🚀 Subiendo a Google Sheets...';
 
-        const response = await fetch('https://script.google.com/macros/s/AKfycbwdb4ToRIuHsfkfB5cXuQisJUY-qlUYxvX0d8mpkX9iGaH4eSj4QLNxhRCpRkDPQPbG/exec', {
+        await fetch('https://script.google.com/macros/s/AKfycbwdb4ToRIuHsfkfB5cXuQisJUY-qlUYxvX0d8mpkX9iGaH4eSj4QLNxhRCpRkDPQPbG/exec', {
           method: 'POST',
-          mode: 'no-cors', // Necesario para Google Apps Script POST desde web
+          mode: 'no-cors', 
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             action: 'updateData',
