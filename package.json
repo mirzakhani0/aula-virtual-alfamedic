@@ -1,7 +1,7 @@
 {
   "name": "aula-virtual-sinapsis",
   "version": "1.0.0",
-  "description": "Aula Virtual SINAPSIS PREU - Sistema de gestión educativa",
+  "description": "Aula Virtual MIRZAKHANI PREU - Sistema de gestión educativa",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -15,7 +15,7 @@
     "sinapsis",
     "typescript"
   ],
-  "author": "SINAPSIS PREU",
+  "author": "MIRZAKHANI PREU",
   "license": "MIT",
   "devDependencies": {
     "typescript": "^5.3.3",

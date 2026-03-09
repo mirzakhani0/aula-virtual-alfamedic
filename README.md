@@ -1,4 +1,4 @@
-# Aula Virtual SINAPSIS PREU
+# Aula Virtual MIRZAKHANI PREU
 
 Sistema de gestión educativa para cursos de preparación médica.
 
@@ -291,7 +291,7 @@ MIT License - Libre para uso personal y comercial.
 
 ## Contacto
 
-SINAPSIS PREU - Preparación Médica
+MIRZAKHANI PREU - Preparación Médica
 
 ---
 
