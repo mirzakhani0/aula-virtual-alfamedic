@@ -52,6 +52,40 @@ function updateSheetData(sheetName, rows) {
 }
 
 /**
+ * MIGRACIÓN AUTOMÁTICA: Copia todos los datos de la base antigua a la nueva.
+ * Puedes ejecutar esto una sola vez desde el editor de Google Apps Script.
+ */
+function runMigration() {
+  const OLD_ID = '1DkmOqVSRxLPkRZ6ytNQA9HfhVmPndrp47Ts3Rzl21lU';
+  const NEW_ID = SPREADSHEET_ID;
+  
+  const oldSS = SpreadsheetApp.openById(OLD_ID);
+  const newSS = SpreadsheetApp.openById(NEW_ID);
+  
+  const oldSheets = oldSS.getSheets();
+  
+  oldSheets.forEach(sheet => {
+    const name = sheet.getName();
+    let targetSheet = newSS.getSheetByName(name);
+    
+    // Si no existe, crearla
+    if (!targetSheet) {
+      targetSheet = newSS.insertSheet(name);
+    }
+    
+    targetSheet.clear();
+    const data = sheet.getDataRange().getValues();
+    
+    if (data.length > 0) {
+      targetSheet.getRange(1, 1, data.length, data[0].length).setValues(data);
+    }
+    console.log('Migrada hoja: ' + name);
+  });
+  
+  return "✅ Migración completada con éxito.";
+}
+
+/**
  * Maneja las peticiones GET y las convierte en API REST
 ...
  * Parámetros esperados:
