@@ -8,35 +8,61 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="theme-color" content="#6366f1">
   <meta name="format-detection" content="telephone=no">
+<title>Aula Virtual MIRZAKHANI PREU</title>
 
-  <title>Aula Virtual MIRZAKHANI PREU</title>
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<!-- XLSX Library -->
+<script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
 </head>
 <body>
-  <!-- Header -->
-  <header class="header">
-    <div class="header-left">
-      <button id="menuToggle" class="menu-toggle" aria-label="Menú">
-        <i class="fas fa-bars"></i>
-      </button>
-      <div class="logo">
-        <i class="fas fa-graduation-cap"></i>
-        <div class="logo-text">
-          <span class="logo-main">AULA VIRTUAL</span>
-          <span class="logo-sub">MIRZAKHANI PREU</span>
-        </div>
+<!-- Admin Modal -->
+<div id="adminModal" class="admin-modal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); align-items: center; justify-content: center;">
+  <div style="background: white; padding: 2rem; border-radius: 12px; width: 90%; max-width: 400px; box-shadow: 0 10px 25px rgba(0,0,0,0.2);">
+    <h2 style="margin-top: 0; color: #4f46e5;">Acceso Admin</h2>
+    <div id="loginSection">
+      <input type="email" id="adminUser" placeholder="Usuario (Gmail)" style="width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 6px;">
+      <input type="password" id="adminPass" placeholder="Contraseña" style="width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 6px;">
+      <button id="btnLogin" style="width: 100%; padding: 12px; background: #4f46e5; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold;">Entrar</button>
+    </div>
+    <div id="uploadSection" style="display: none;">
+      <p>Selecciona una hoja y sube tu Excel:</p>
+      <input type="text" id="targetSheet" placeholder="Nombre de la hoja (ej: Ginecología)" style="width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 6px;">
+      <input type="file" id="excelFile" accept=".xlsx, .xls" style="width: 100%; margin: 10px 0;">
+      <button id="btnUpload" style="width: 100%; padding: 12px; background: #10b981; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold;">Subir y Actualizar</button>
+      <p id="uploadStatus" style="margin-top: 10px; font-size: 14px;"></p>
+    </div>
+    <button id="btnCloseAdmin" style="margin-top: 15px; background: none; border: none; color: #666; cursor: pointer; text-decoration: underline; width: 100%;">Cerrar</button>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="header">
+  <div class="header-left">
+    <button id="menuToggle" class="menu-toggle" aria-label="Menú">
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="logo">
+      <i class="fas fa-graduation-cap"></i>
+      <div class="logo-text">
+        <span class="logo-main">AULA VIRTUAL</span>
+        <span class="logo-sub">MIRZAKHANI PREU</span>
       </div>
     </div>
-    <div class="header-right">
-      <select id="courseSelect" class="course-select" aria-label="Seleccionar curso">
-        <option value="">Hoja 1</option>
-      </select>
-      <button id="btnRefresh" class="btn-action" title="Actualizar" aria-label="Actualizar">
-        <i class="fas fa-sync-alt"></i>
-        <span>Actualizar</span>
-      </button>
+  </div>
+  <div class="header-right">
+    <select id="courseSelect" class="course-select" aria-label="Seleccionar curso">
+      <option value="">Hoja 1</option>
+    </select>
+    <button id="btnAdmin" class="btn-action" title="Admin">
+      <i class="fas fa-user-shield"></i>
+      <span>Admin</span>
+    </button>
+    <button id="btnRefresh" class="btn-action" title="Actualizar" aria-label="Actualizar">
+      <i class="fas fa-sync-alt"></i>
+      <span>Actualizar</span>
+    </button>
+...
       <a href="#" id="btnHome" class="btn-action" aria-label="Inicio">
         <i class="fas fa-home"></i>
         <span>Inicio</span>

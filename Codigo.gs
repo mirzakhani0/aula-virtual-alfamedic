@@ -4,9 +4,56 @@
  ******************************************************/
 
 const SPREADSHEET_ID = '1DkmOqVSRxLPkRZ6ytNQA9HfhVmPndrp47Ts3Rzl21lU';
+/**
+ * Maneja las peticiones POST (para subir datos)
+ */
+function doPost(e) {
+  const output = ContentService.createTextOutput().setMimeType(ContentService.MimeType.JSON);
+
+  try {
+    const data = JSON.parse(e.postData.contents);
+    const { action, sheetName, rows, password } = data;
+
+    // Validación de seguridad básica (debe coincidir con la del frontend)
+    if (password !== 'YOSOYSUPERIOR&#MIRZAKHANI') {
+      throw new Error('No autorizado');
+    }
+
+    if (action === 'updateData') {
+      return output.setContent(JSON.stringify(updateSheetData(sheetName, rows)));
+    }
+
+    throw new Error('Acción no válida');
+  } catch (error) {
+    return output.setContent(JSON.stringify({ error: true, message: error.toString() }));
+  }
+}
+
+/**
+ * Limpia una hoja y escribe nuevos datos
+ */
+function updateSheetData(sheetName, rows) {
+  const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+  let sh = ss.getSheetByName(sheetName);
+
+  // Si la hoja no existe, la crea
+  if (!sh) {
+    sh = ss.insertSheet(sheetName);
+  }
+
+  sh.clear();
+
+  if (rows && rows.length > 0) {
+    const range = sh.getRange(1, 1, rows.length, rows[0].length);
+    range.setValues(rows);
+  }
+
+  return { success: true, message: `Hoja ${sheetName} actualizada con ${rows.length} filas.` };
+}
 
 /**
  * Maneja las peticiones GET y las convierte en API REST
+...
  * Parámetros esperados:
  *   - action: 'getSheets' | 'getCourseData'
  *   - sheet: nombre de la hoja (solo para getCourseData)
