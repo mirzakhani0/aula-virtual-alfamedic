@@ -67,13 +67,36 @@
     left: 0;
     bottom: 0;
     width: 280px;
-    transform: translateX(-100%);
-    z-index: 1000;
-    box-shadow: 10px 0 30px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
+    transform: translateX(-105%); /* Un poco más de 100% para asegurar ocultamiento total */
+    z-index: 2000;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: none; /* Sin sombra cuando está oculto */
   }
   
-  .sidebar.active { transform: translateX(0); }
+  .sidebar.active { 
+    transform: translateX(0); 
+    box-shadow: 10px 0 30px rgba(0,0,0,0.15); /* Sombra solo cuando está activo */
+  }
+
+  /* Overlay para móvil */
+  .sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1900;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease;
+    backdrop-filter: blur(2px);
+  }
+
+  .sidebar-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
 
   .player-container {
     height: auto;

@@ -129,6 +129,15 @@ export class App {
       });
     }
 
+    // Overlay para móvil
+    if (this.elements.sidebarOverlay) {
+      this.elements.sidebarOverlay.addEventListener('click', () => {
+        if (this.state.sidebarOpen) {
+          this.toggleSidebar();
+        }
+      });
+    }
+
     // Course select
     this.elements.courseSelect.addEventListener('change', (e) => {
       const select = e.target as HTMLSelectElement;
@@ -257,6 +266,10 @@ export class App {
   private toggleSidebar(): void {
     this.state.sidebarOpen = !this.state.sidebarOpen;
     this.elements.sidebar.classList.toggle('active', this.state.sidebarOpen);
+
+    if (this.elements.sidebarOverlay) {
+      this.elements.sidebarOverlay.classList.toggle('active', this.state.sidebarOpen);
+    }
 
     if (this.state.isMobile) {
       if (this.state.sidebarOpen) {
