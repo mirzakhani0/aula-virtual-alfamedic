@@ -438,8 +438,8 @@
 
 .mobile-nav-container {
   display: grid;
-  grid-template-columns: repeat(5, 1fr); /* 5 columnas idénticas forzadas */
-  align-items: end; /* Alineamos todo a la base */
+  grid-template-columns: repeat(4, 1fr); /* 4 columnas idénticas forzadas */
+  align-items: center; 
   padding: 0 4px;
   max-width: 500px;
   margin: 0 auto;
@@ -457,8 +457,8 @@
   gap: 4px;
   transition: all 0.2s ease;
   padding: 8px 0;
-  width: 100%; /* Cada botón ocupa todo su slot */
-  overflow: hidden; /* Evita que el texto rompa el diseño */
+  width: 100%; 
+  overflow: hidden; 
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -476,7 +476,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  white-space: nowrap; /* Evita que el texto se parta en dos líneas */
+  white-space: nowrap; 
 }
 
 /* Estado activo y hover */
@@ -487,27 +487,6 @@
 
 .mobile-nav-btn:active i {
   transform: scale(0.85);
-}
-
-/* Estilo especial para el botón central (Home) */
-#mobileHomeBtn {
-  background: var(--primary-color);
-  color: white;
-  width: 50px;
-  height: 50px;
-  border-radius: 15px; /* Cuadrado redondeado moderno */
-  margin: 0 auto;
-  box-shadow: 0 4px 12px rgba(0, 65, 106, 0.3);
-  transform: translateY(-5px); /* Un poco elevado */
-}
-
-#mobileHomeBtn i {
-  color: white;
-  font-size: 24px;
-}
-
-#mobileHomeBtn span {
-  display: none; /* Quitamos el texto del centro para que se vea minimalista */
 }
 
 .mobile-nav-btn:disabled {
