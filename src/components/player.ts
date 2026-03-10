@@ -58,7 +58,6 @@ export class Player {
    * Renderiza contenido embebido
    */
   private renderEmbedded(item: CourseItem): void {
-    const isPDF = item.mime === 'application/pdf' || item.type === 'pdf' || item.url.includes('.pdf');
     let embedUrl = item.embedUrl;
 
     // Forzar el formato más compatible para Google Drive
