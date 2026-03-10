@@ -79,6 +79,10 @@ export function getDOMElements(): DOMElements {
 
     // Landing Page
     landingPage: getOptional<HTMLElement>('landingPage'),
-    btnEnter: getOptional<HTMLButtonElement>('btnEnter')
+    btnEnter: getOptional<HTMLButtonElement>('btnEnter'),
+
+    // Instructions
+    instructionsPage: getOptional<HTMLElement>('instructionsPage'),
+    btnStart: getOptional<HTMLButtonElement>('btnStart')
   };
 }

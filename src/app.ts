@@ -164,16 +164,30 @@ export class App {
     // Landing Page
     if (this.elements.btnEnter && this.elements.landingPage) {
       this.elements.btnEnter.addEventListener('click', () => {
+        // Ocultar landing con animación
         this.elements.landingPage!.classList.add('hide');
-        document.body.classList.remove('show-landing');
         vibrate([10, 20]);
         
-        // Pequeño delay para quitar del DOM (opcional)
+        // Mostrar instrucciones después de la animación de landing
         setTimeout(() => {
-          if (this.elements.landingPage) {
-            this.elements.landingPage.style.display = 'none';
+          if (this.elements.landingPage) this.elements.landingPage.style.display = 'none';
+          if (this.elements.instructionsPage) {
+            this.elements.instructionsPage.style.display = 'flex';
           }
-        }, 800);
+        }, 600);
+      });
+    }
+
+    // Botón de inicio (finalizar instrucciones)
+    if (this.elements.btnStart && this.elements.instructionsPage) {
+      this.elements.btnStart.addEventListener('click', () => {
+        this.elements.instructionsPage!.classList.add('hide');
+        document.body.classList.remove('show-landing'); // Quitar filtro que oculta la app
+        vibrate([15]);
+
+        setTimeout(() => {
+          if (this.elements.instructionsPage) this.elements.instructionsPage.style.display = 'none';
+        }, 600);
       });
     }
 

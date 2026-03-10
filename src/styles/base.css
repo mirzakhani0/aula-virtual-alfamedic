@@ -187,6 +187,153 @@ body.show-landing .mobile-bottom-nav {
   .btn-enter { padding: 16px 36px; width: 100%; justify-content: center; }
 }
 
+/* ============================================
+   INSTRUCTIONS PAGE STYLES
+   ============================================ */
+
+.instructions-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: all 0.6s ease;
+  color: #1a1a1b;
+  text-align: center;
+}
+
+.instructions-content {
+  max-width: 1000px;
+  padding: 40px 24px;
+  animation: fadeIn 0.8s ease-out;
+}
+
+.instructions-title {
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  font-weight: 800;
+  margin-bottom: 12px;
+  color: #000;
+  letter-spacing: -0.02em;
+}
+
+.instructions-subtitle {
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  color: #4b5563;
+  margin-bottom: 50px;
+}
+
+.steps-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 32px;
+  margin-bottom: 60px;
+}
+
+.step-card {
+  background: #f8fafc;
+  padding: 48px 32px;
+  border-radius: 24px;
+  position: relative;
+  transition: all 0.3s ease;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.step-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
+  border-color: #007BFF;
+}
+
+.step-number {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #007BFF;
+  color: white;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 18px;
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+}
+
+.step-card i {
+  font-size: 40px;
+  color: #FFC107;
+  margin-bottom: 24px;
+  background: white;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  box-shadow: 0 8px 15px rgba(0,0,0,0.03);
+}
+
+.step-card h3 {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  color: #000;
+}
+
+.step-card p {
+  font-size: 14px;
+  color: #64748b;
+  line-height: 1.6;
+}
+
+.btn-start {
+  background: linear-gradient(135deg, #007BFF 0%, #0056b3 100%);
+  color: #FFFFFF;
+  border: none;
+  padding: 18px 50px;
+  border-radius: 16px;
+  font-size: 18px;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 auto;
+  box-shadow: 0 20px 25px -5px rgba(0, 123, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.btn-start:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+.instructions-page.hide {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.95);
+}
+
+@media (max-width: 768px) {
+  .steps-container {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .step-card { padding: 32px 24px; }
+  .btn-start { width: 100%; justify-content: center; }
+}
+
 /* Glassmorphism */
 .header {
   backdrop-filter: var(--glass-blur);

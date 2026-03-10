@@ -85,4 +85,8 @@ export interface DOMElements {
   // Landing Page
   landingPage?: HTMLElement;
   btnEnter?: HTMLButtonElement;
+
+  // Instructions
+  instructionsPage?: HTMLElement;
+  btnStart?: HTMLButtonElement;
 }
