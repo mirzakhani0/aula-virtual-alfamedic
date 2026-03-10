@@ -112,6 +112,12 @@ export class Player {
       box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     `;
     this.playerElement.appendChild(directLink);
+
+    // Agregar overlay para capturar gestos en móvil
+    if (window.innerWidth <= 768) {
+      this.addTouchOverlay();
+      this.addFloatingControls();
+    }
   }
 
   /**
