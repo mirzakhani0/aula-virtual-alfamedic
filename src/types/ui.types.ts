@@ -53,6 +53,7 @@ export interface DOMElements {
 
   // Sidebar
   sidebar: HTMLElement;
+  sidebarOverlay?: HTMLElement;
   sidebarToggle: HTMLButtonElement;
   searchInput: HTMLInputElement;
   courseTitle: HTMLElement;
