@@ -529,7 +529,7 @@ export class App {
     }
 
     // Renderizar player
-    this.player.render(item);
+    this.player.render(item, currentIndex, this.state.flat.length);
 
     // Actualizar navegación
     const currentIndex = this.state.flat.findIndex(x => x.id === this.state.activeId);

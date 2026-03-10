@@ -353,6 +353,43 @@
   border-bottom: 1px solid var(--border-color);
 }
 
+.content-breadcrumb {
+  font-size: 13px;
+  color: var(--text-secondary);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.badge-week, .badge-sub, .badge-progress {
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.badge-week {
+  background: rgba(0, 123, 255, 0.1);
+  color: var(--primary-color);
+}
+
+.badge-sub {
+  background: #f1f5f9;
+  color: #4b5563;
+}
+
+.badge-progress {
+  background: #fffbeb;
+  color: #b45309;
+  border: 1px solid #fde68a;
+}
+
 .player-container {
   flex: 1;
   padding: 16px;
