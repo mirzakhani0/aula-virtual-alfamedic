@@ -19,69 +19,11 @@ async function initApp() {
     await app.init();
     console.log('✅ Aula Virtual MIRZAKHANI PREU iniciada correctamente');
     
-    // --- Lógica del Dashboard ---
-    renderDashboard(app);
-    
     // --- Lógica de Administración ---
     setupAdmin();
 
   } catch (error) {
     console.error('❌ Error al iniciar la aplicación:', error);
-  }
-}
-
-async function renderDashboard(app: any) {
-  const courseCards = document.getElementById('courseCards');
-  const dashboard = document.getElementById('dashboard');
-  const contentHeader = document.getElementById('contentHeader');
-  const courseSelect = document.getElementById('courseSelect') as HTMLSelectElement;
-
-  if (!courseCards || !dashboard) return;
-
-  try {
-    // Obtener la lista de cursos (hojas)
-    const sheets = await app.apiService.getSheets();
-    courseCards.innerHTML = ''; // Limpiar skeletons
-
-    sheets.forEach((sheet: any) => {
-      const card = document.createElement('div');
-      card.className = 'course-card';
-      card.innerHTML = `
-        <i class="fas fa-book-medical"></i>
-        <h3>${sheet.name}</h3>
-        <span style="font-size: 12px; color: var(--text-secondary);">Ver contenidos</span>
-      `;
-      
-      card.onclick = () => {
-        dashboard.style.display = 'none';
-        if (contentHeader) contentHeader.style.display = 'flex';
-        courseSelect.value = sheet.name;
-        courseSelect.dispatchEvent(new Event('change'));
-      };
-      
-      courseCards.appendChild(card);
-    });
-
-    // Botón Home para volver al Dashboard
-    const btnHome = document.getElementById('btnHome');
-    const mobileHomeBtn = document.getElementById('mobileHomeBtn');
-    
-    const showDashboard = (e: Event) => {
-      e.preventDefault();
-      dashboard.style.display = 'block';
-      if (contentHeader) contentHeader.style.display = 'none';
-      const player = document.getElementById('player');
-      if (player) {
-        player.innerHTML = '';
-        player.appendChild(dashboard);
-      }
-    };
-
-    if (btnHome) btnHome.onclick = showDashboard;
-    if (mobileHomeBtn) mobileHomeBtn.onclick = showDashboard;
-
-  } catch (err) {
-    console.error('Error cargando dashboard:', err);
   }
 }
 
