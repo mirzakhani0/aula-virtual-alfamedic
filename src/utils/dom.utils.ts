@@ -48,7 +48,6 @@ export function getDOMElements(): DOMElements {
 
     // Sidebar
     sidebar: get<HTMLElement>('sidebar'),
-    sidebarOverlay: get<HTMLElement>('sidebarOverlay'),
     sidebarToggle: get<HTMLButtonElement>('sidebarToggle'),
     searchInput: get<HTMLInputElement>('searchInput'),
     courseTitle: get<HTMLElement>('courseTitle'),

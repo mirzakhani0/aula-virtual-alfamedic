@@ -107,7 +107,6 @@ export class App {
   private setupEventListeners(): void {
     // Sidebar
     this.elements.menuToggle.addEventListener('click', () => this.toggleSidebar());
-    this.elements.sidebarOverlay.addEventListener('click', () => this.toggleSidebar());
 
     if (this.elements.sidebarToggle) {
       this.elements.sidebarToggle.addEventListener('click', (e) => {
@@ -253,7 +252,6 @@ export class App {
   private toggleSidebar(): void {
     this.state.sidebarOpen = !this.state.sidebarOpen;
     this.elements.sidebar.classList.toggle('active', this.state.sidebarOpen);
-    this.elements.sidebarOverlay.classList.toggle('active', this.state.sidebarOpen);
 
     if (this.state.isMobile) {
       if (this.state.sidebarOpen) {
