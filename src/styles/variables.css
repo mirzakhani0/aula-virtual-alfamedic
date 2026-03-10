@@ -1,60 +1,40 @@
 /**
- * Variables CSS del proyecto
+ * Variables CSS del proyecto - Nueva Paleta de Colores
  */
 
 :root {
   /* Colores principales */
-  --primary-color: #00416A; /* Indigo Dye */
-  --primary-light: #005A92;
-  --secondary-color: #002D4A;
-  --accent-color: #10b981; /* Emerald */
-  --success-color: #10b981;
-  --warning-color: #f59e0b;
+  --primary-color: #007BFF;    /* Azul claro vibrante */
+  --primary-light: #4DABFF;
+  --secondary-color: #0056b3;  /* Azul más oscuro para contraste */
+  --accent-color: #FFC107;     /* Amarillo para actualización/favoritos */
+  --success-color: #28A745;    /* Verde */
+  --warning-color: #FFC107;    /* Amarillo */
+  --danger-color: #DC3545;     /* Rojo para cerrar/alertas */
 
-  /* Glassmorphism y Fondos */
-  --sidebar-bg: rgba(248, 250, 252, 0.8);
-  --main-bg: #ffffff;
-  --header-bg: rgba(255, 255, 255, 0.85);
-  --glass-blur: blur(12px);
+  /* Fondos y Estructura */
+  --main-bg: #FFFFFF;          /* Blanco Puro */
+  --sidebar-bg: #FFFFFF;       /* Blanco Puro */
+  --header-bg: #FFFFFF;        /* Blanco Puro */
+  --hover-bg: #F8F9FA;         /* Gris muy claro para hover */
+  --glass-blur: blur(10px);
 
   /* Colores de texto */
-  --text-primary: #1e293b;
-  --text-secondary: #64748b;
+  --text-primary: #000000;     /* Negro para lectura clara */
+  --text-secondary: #495057;   /* Gris oscuro */
+  --text-on-blue: #FFFFFF;     /* Blanco sobre fondos azules */
 
   /* Bordes y sombras */
-  --border-color: rgba(226, 232, 240, 0.6);
-  --hover-bg: rgba(0, 65, 106, 0.05);
-  --card-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.08);
+  --border-color: #DEE2E6;     /* Gris claro para bordes */
+  --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 
-  /* Tipografía */
-  --font-family: 'Inter', system-ui, -apple-system, sans-serif;
-
-  /* Dimensiones */
+  /* Dimensiones (Sin cambios) */
   --header-height: 60px;
   --sidebar-width: 320px;
   --sidebar-collapsed-width: 60px;
   --bottom-nav-height: 0px;
 
-  /* Safe areas para móviles */
+  /* Safe areas */
   --safe-area-inset-top: env(safe-area-inset-top, 0);
   --safe-area-inset-bottom: env(safe-area-inset-bottom, 0);
-  --safe-area-inset-left: env(safe-area-inset-left, 0);
-  --safe-area-inset-right: env(safe-area-inset-right, 0);
-}
-
-/* Variables responsivas */
-@media (max-width: 768px) {
-  :root {
-    --header-height: 54px;
-    --sidebar-width: 280px;
-    --bottom-nav-height: 60px;
-  }
-}
-
-@media (max-width: 480px) {
-  :root {
-    --header-height: 50px;
-    --sidebar-width: 260px;
-    --bottom-nav-height: 56px;
-  }
 }

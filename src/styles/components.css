@@ -1,5 +1,5 @@
 /**
- * Estilos de componentes
+ * Estilos de componentes - Tema Claro (Blanco y Azul)
  */
 
 /* ============================================
@@ -7,28 +7,19 @@
    ============================================ */
 
 .header {
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-  color: white;
+  background: var(--header-bg);
+  color: var(--text-primary);
   padding: 0 16px;
   padding-top: var(--safe-area-inset-top);
   height: calc(var(--header-height) + var(--safe-area-inset-top));
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   z-index: 500;
   flex-shrink: 0;
   position: relative;
-}
-
-.header::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--accent-color), var(--warning-color), var(--success-color));
+  border-bottom: 1px solid var(--border-color);
 }
 
 .header-left {
@@ -54,6 +45,7 @@
   align-items: center;
   gap: 8px;
   white-space: nowrap;
+  color: var(--primary-color);
 }
 
 .logo i {
@@ -69,20 +61,22 @@
 .logo-main {
   font-size: 16px;
   letter-spacing: 0.5px;
+  color: var(--text-primary);
 }
 
 .logo-sub {
   font-size: 10px;
-  opacity: 0.9;
+  opacity: 0.7;
   font-weight: 600;
+  color: var(--primary-color);
 }
 
 /* Botones del header */
 .menu-toggle {
-  display: flex; /* Siempre visible */
-  background: rgba(255,255,255,0.15);
-  border: none;
-  color: white;
+  display: flex;
+  background: var(--hover-bg);
+  border: 1px solid var(--border-color);
+  color: var(--primary-color);
   font-size: 20px;
   cursor: pointer;
   padding: 8px;
@@ -95,13 +89,14 @@
 }
 
 .menu-toggle:hover {
-  background: rgba(255,255,255,0.25);
+  background: var(--primary-color);
+  color: white;
 }
 
 .btn-action {
-  background: rgba(255,255,255,0.15);
-  color: white;
-  border: 1px solid rgba(255,255,255,0.25);
+  background: var(--primary-color);
+  color: var(--text-on-blue);
+  border: none;
   padding: 8px 12px;
   border-radius: 10px;
   cursor: pointer;
@@ -114,21 +109,33 @@
   font-weight: 600;
 }
 
-.course-select {
-  background: rgba(255,255,255,0.2);
+.btn-action:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+/* Botón Actualizar Amarillo */
+#btnRefresh {
+  background: var(--warning-color);
+  color: var(--text-primary);
+}
+
+/* Botón Inicio Rojo (si se desea como salir/inicio) */
+#btnHome {
+  background: var(--danger-color);
   color: white;
-  border: 1px solid rgba(255,255,255,0.3);
+}
+
+.course-select {
+  background: white;
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
   border-radius: 10px;
   padding: 8px;
   font-size: 13px;
   min-width: 120px;
   font-weight: 600;
   cursor: pointer;
-}
-
-.course-select option {
-  background: var(--primary-color);
-  color: white;
 }
 
 /* ============================================
@@ -142,6 +149,7 @@
   position: relative;
   height: calc(100vh - var(--header-height));
   z-index: 10;
+  background: var(--main-bg);
 }
 
 /* ============================================
@@ -151,8 +159,6 @@
 .sidebar {
   width: var(--sidebar-width);
   background: var(--sidebar-bg);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
   border-right: 1px solid var(--border-color);
   display: flex;
   flex-direction: column;
@@ -173,13 +179,12 @@
 .sidebar.collapsed .course-navigation {
   opacity: 0;
   visibility: hidden;
-  pointer-events: none;
 }
 
 .sidebar-header {
   padding: 16px;
   border-bottom: 1px solid var(--border-color);
-  background: rgba(255, 255, 255, 0.4);
+  background: white;
   flex-shrink: 0;
   width: var(--sidebar-width);
   transition: opacity 0.3s;
@@ -189,40 +194,44 @@
   font-size: 17px;
   font-weight: 800;
   margin-bottom: 12px;
-  color: var(--primary-color);
+  color: var(--text-primary);
 }
 
 .sidebar-toggle {
-  display: none !important; /* Eliminamos botón flotante */
+  display: none !important;
 }
 
 /* Progress bar */
 .progress-bar {
   height: 6px;
-  background: rgba(0, 0, 0, 0.05);
+  background: var(--hover-bg);
   border-radius: 10px;
   overflow: hidden;
   margin-bottom: 12px;
+  border: 1px solid var(--border-color);
 }
 
 .progress-fill {
   height: 100%;
-  background: var(--accent-color);
+  background: var(--primary-color);
   width: 0%;
   transition: width 0.5s;
 }
 
 /* Search box */
-.search-box {
-  position: relative;
-}
-
 .search-input {
   width: 100%;
-  padding: 10px 35px 10px 12px;
+  padding: 10px 12px;
   border: 1px solid var(--border-color);
   border-radius: 10px;
   font-size: 14px;
+  background: var(--hover-bg);
+  color: var(--text-primary);
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
   background: white;
 }
 
@@ -233,6 +242,7 @@
   padding: 12px;
   width: var(--sidebar-width);
   transition: opacity 0.3s;
+  background: white;
 }
 
 .course-section { margin-bottom: 20px; }
@@ -243,17 +253,13 @@
   color: var(--text-secondary);
   text-transform: uppercase;
   padding: 10px;
-  background: rgba(0,0,0,0.03);
+  background: var(--hover-bg);
   border-radius: 8px;
   margin-bottom: 8px;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
-}
-
-.course-section.collapsed .sub-section,
-.sub-section.collapsed .lesson-list {
-  display: none;
+  border: 1px solid var(--border-color);
 }
 
 .sub-title {
@@ -267,7 +273,7 @@
 .lesson-list {
   list-style: none;
   padding-left: 10px;
-  border-left: 1px solid var(--border-color);
+  border-left: 2px solid var(--hover-bg);
 }
 
 .lesson-item a {
@@ -279,11 +285,17 @@
   color: var(--text-primary);
   gap: 10px;
   font-size: 14px;
+  transition: background 0.2s;
+}
+
+.lesson-item a:hover {
+  background: var(--hover-bg);
 }
 
 .lesson-item.active a {
   background: var(--primary-color);
-  color: white;
+  color: var(--text-on-blue);
+  font-weight: 600;
 }
 
 /* ============================================
@@ -295,7 +307,7 @@
   display: flex;
   flex-direction: column;
   min-width: 0;
-  background: #f8fafc;
+  background: #F1F5F9; /* Gris muy claro para resaltar el reproductor blanco */
 }
 
 .content-header {
@@ -317,10 +329,11 @@
   flex: 1;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 
 /* ============================================
-   NAVEGACIÓN
+   NAVEGACIÓN (PC)
    ============================================ */
 
 .nav-controls {
@@ -332,12 +345,11 @@
   align-items: center;
   gap: 12px;
   flex-shrink: 0;
-  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.03);
 }
 
 .nav-btn {
-  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-  color: white;
+  background: var(--primary-color);
+  color: var(--text-on-blue);
   border: none;
   padding: 10px 20px;
   border-radius: 12px;
@@ -346,38 +358,29 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.2s;
   font-weight: 700;
-  min-height: 44px;
-  box-shadow: 0 4px 12px rgba(0, 65, 106, 0.2);
 }
 
 .nav-btn:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 65, 106, 0.3);
   filter: brightness(1.1);
-}
-
-.nav-btn:active:not(:disabled) {
-  transform: scale(0.95);
+  transform: translateY(-1px);
 }
 
 .nav-btn:disabled {
-  background: #e2e8f0;
-  color: #94a3b8;
+  background: var(--border-color);
+  color: var(--text-secondary);
   cursor: not-allowed;
-  box-shadow: none;
 }
 
 .nav-info {
   font-size: 13px;
-  color: var(--primary-color);
+  color: var(--text-primary);
   font-weight: 800;
   padding: 8px 16px;
-  background: rgba(0, 65, 106, 0.05);
+  background: var(--hover-bg);
   border-radius: 20px;
-  border: 1px solid rgba(0, 65, 106, 0.1);
-  letter-spacing: 0.5px;
+  border: 1px solid var(--border-color);
 }
 
 /* ============================================
@@ -385,7 +388,7 @@
    ============================================ */
 
 .skeleton {
-  background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%);
+  background: linear-gradient(90deg, #F1F5F9 25%, #E2E8F0 50%, #F1F5F9 75%);
   background-size: 200% 100%;
   animation: skeleton-loading 1.5s infinite;
   border-radius: 4px;
@@ -396,11 +399,8 @@
   100% { background-position: -200% 0; }
 }
 
-.skeleton-sidebar-item { height: 40px; margin-bottom: 8px; }
-.skeleton-player { width: 100%; height: 100%; }
-
 /* ============================================
-   NAVEGACIÓN MÓVIL (Botonera)
+   NAVEGACIÓN MÓVIL
    ============================================ */
 
 .mobile-bottom-nav {
@@ -409,21 +409,18 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(255, 255, 255, 0.98); 
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: white; 
   border-top: 1px solid var(--border-color);
   padding: 10px 0;
   padding-bottom: calc(10px + var(--safe-area-inset-bottom));
   z-index: 9999 !important; 
-  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.05);
 }
 
 .mobile-nav-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   align-items: center; 
-  padding: 0 4px;
   max-width: 500px;
   margin: 0 auto;
 }
@@ -436,40 +433,26 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   gap: 4px;
-  transition: all 0.2s ease;
-  padding: 8px 0;
-  width: 100%; 
-  overflow: hidden; 
-  -webkit-tap-highlight-color: transparent;
+  font-weight: 700;
+}
+
+.mobile-nav-btn.active {
+  color: var(--primary-color);
 }
 
 .mobile-nav-btn i {
   font-size: 22px;
-  color: var(--text-secondary);
-  height: 24px;
 }
 
 .mobile-nav-btn span {
   font-size: 9px;
-  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  white-space: nowrap; 
 }
 
-.mobile-nav-btn.active, 
-.mobile-nav-btn:active {
-  color: var(--primary-color);
-}
-
-.mobile-nav-btn:active i {
-  transform: scale(0.85);
-}
-
-.mobile-nav-btn:disabled {
-  opacity: 0.2;
+/* Botón Actualizar en móvil - Amarillo */
+#mobileRefreshBtn {
+  color: var(--warning-color);
 }
 
 /* ============================================
@@ -485,10 +468,10 @@
     width: 280px;
     z-index: 5000 !important; 
     transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: white;
   }
   
   .sidebar.active { left: 0; }
-  .sidebar-toggle { display: none !important; }
   
   .mobile-bottom-nav { display: block !important; }
 
@@ -510,7 +493,7 @@
   bottom: 100px; 
   left: 50%;
   transform: translateX(-50%);
-  background: #333;
+  background: var(--text-primary);
   color: white;
   padding: 10px 20px;
   border-radius: 20px;
