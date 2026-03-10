@@ -4,26 +4,31 @@
 
 :root {
   /* Colores principales */
-  --primary-color: #6366f1;
-  --primary-light: #818cf8;
-  --secondary-color: #8b5cf6;
-  --accent-color: #ec4899;
+  --primary-color: #00416A; /* Indigo Dye */
+  --primary-light: #005A92;
+  --secondary-color: #002D4A;
+  --accent-color: #10b981; /* Emerald */
   --success-color: #10b981;
   --warning-color: #f59e0b;
 
-  /* Colores de fondo */
-  --sidebar-bg: #f8fafc;
+  /* Glassmorphism y Fondos */
+  --sidebar-bg: rgba(248, 250, 252, 0.8);
   --main-bg: #ffffff;
+  --header-bg: rgba(255, 255, 255, 0.85);
+  --glass-blur: blur(12px);
 
   /* Colores de texto */
   --text-primary: #1e293b;
   --text-secondary: #64748b;
 
   /* Bordes y sombras */
-  --border-color: #e2e8f0;
-  --hover-bg: #f1f5f9;
-  --card-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --border-color: rgba(226, 232, 240, 0.6);
+  --hover-bg: rgba(0, 65, 106, 0.05);
+  --card-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.08);
 
+  /* Tipografía */
+  --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+...
   /* Dimensiones */
   --header-height: 60px;
   --sidebar-width: 320px;
