@@ -523,6 +523,9 @@ export class App {
     // Actualizar sidebar
     this.sidebar.setActiveItem(id);
 
+    // Obtener índice actual para navegación y player
+    const currentIndex = this.state.flat.findIndex(x => x.id === this.state.activeId);
+
     // Scroll al item activo (solo desktop)
     if (!this.state.isMobile) {
       this.sidebar.scrollToActive();
@@ -532,7 +535,6 @@ export class App {
     this.player.render(item, currentIndex, this.state.flat.length);
 
     // Actualizar navegación
-    const currentIndex = this.state.flat.findIndex(x => x.id === this.state.activeId);
     this.navigation.update(currentIndex, this.state.flat.length);
 
     // Actualizar progress bar
