@@ -157,6 +157,30 @@ body {
   font-size: 13px;
   font-weight: 500;
   color: #9ca3af;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.landing-contact {
+  margin-top: 8px;
+}
+
+.landing-contact a {
+  color: #007BFF;
+  text-decoration: none;
+  font-weight: 700;
+  transition: color 0.3s ease;
+}
+
+.landing-contact a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+.landing-contact i {
+  margin-right: 6px;
+  color: #FFC107;
 }
 
 /* Ocultar App cuando la landing está visible */
