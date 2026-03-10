@@ -202,9 +202,15 @@ export class Player {
    */
   renderLoading(): void {
     this.playerElement.innerHTML = `
-      <div class="player-empty">
-        <div class="loading-spinner" style="width: 36px; height: 36px; border-width: 4px;"></div>
-        <p style="margin-top: 14px;">Cargando...</p>
+      <div style="width: 100%; height: 100%; display: flex; flex-direction: column; gap: 16px; padding: 16px;">
+        <div class="skeleton skeleton-player" style="flex: 1;"></div>
+        <div style="display: flex; gap: 12px; align-items: center;">
+          <div class="skeleton skeleton-icon" style="width: 32px; height: 32px;"></div>
+          <div style="flex: 1;">
+            <div class="skeleton" style="width: 60%; height: 12px; margin-bottom: 8px;"></div>
+            <div class="skeleton" style="width: 30%; height: 8px;"></div>
+          </div>
+        </div>
       </div>
     `;
   }

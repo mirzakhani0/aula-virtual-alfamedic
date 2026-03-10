@@ -103,9 +103,16 @@ export class Sidebar {
    */
   renderLoading(): void {
     this.navContainer.innerHTML = `
-      <div style="padding: 24px; text-align: center; color: #999;">
-        <div class="loading-spinner"></div>
-        <p style="margin-top: 14px; font-size: 14px; font-weight: 600;">Cargando recursos...</p>
+      <div style="padding: 16px;">
+        <div class="skeleton skeleton-title" style="width: 40%; height: 12px; margin-bottom: 24px;"></div>
+        <div class="skeleton skeleton-sidebar-item"></div>
+        <div class="skeleton skeleton-sidebar-item"></div>
+        <div class="skeleton skeleton-sidebar-item"></div>
+        <div class="skeleton skeleton-title" style="width: 50%; height: 12px; margin: 32px 0 24px 0;"></div>
+        <div class="skeleton skeleton-sidebar-item"></div>
+        <div class="skeleton skeleton-sidebar-item"></div>
+        <div class="skeleton skeleton-sidebar-item"></div>
+        <div class="skeleton skeleton-sidebar-item"></div>
       </div>
     `;
   }
