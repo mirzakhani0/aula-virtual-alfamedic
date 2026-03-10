@@ -239,7 +239,6 @@ export class App {
     if (wasMobile !== this.state.isMobile) {
       if (!this.state.isMobile && this.state.sidebarOpen) {
         this.elements.sidebar.classList.remove('active');
-        this.elements.sidebarOverlay.classList.remove('active');
         document.body.classList.remove('no-scroll');
         this.state.sidebarOpen = false;
       }
