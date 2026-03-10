@@ -48,6 +48,7 @@ export interface DOMElements {
   // Header
   menuToggle: HTMLButtonElement;
   courseSelect: HTMLSelectElement;
+  btnLocation: HTMLButtonElement;
   btnRefresh: HTMLButtonElement;
   btnHome: HTMLAnchorElement;
 
@@ -61,7 +62,6 @@ export interface DOMElements {
   navContainer: HTMLElement;
 
   // Main content
-  contentHeader?: HTMLElement;
   contentTitle: HTMLElement;
   contentIcon: HTMLElement;
   contentBreadcrumb: HTMLElement;

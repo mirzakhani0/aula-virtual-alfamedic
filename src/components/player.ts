@@ -28,25 +28,19 @@ export class Player {
   /**
    * Renderiza un item en el player
    */
-  render(item: CourseItem, currentIndex: number = -1, totalItems: number = 0): void {
-    // Actualizar icono
+  render(item: CourseItem): void {
+    // Actualizar header
+    this.contentTitle.textContent = item.name || 'Sin nombre';
     this.contentIcon.className = `${item.icon || 'fas fa-play-circle'} content-icon`;
 
-    // Actualizar breadcrumb y progreso
-    let infoHtml = '';
-    if (item.folder) {
-      infoHtml += `<span class="badge-week"><i class="fas fa-folder"></i> ${escapeHtml(item.folder)}</span>`;
-    }
-    if (item.subfolder) {
-      infoHtml += `<span class="badge-sub"><i class="fas fa-folder-open"></i> ${escapeHtml(item.subfolder)}</span>`;
-    }
-    
-    // Añadir contador de progreso
-    if (currentIndex >= 0 && totalItems > 0) {
-      infoHtml += `<span class="badge-progress"><i class="fas fa-list-ol"></i> Recurso ${currentIndex + 1} de ${totalItems}</span>`;
-    }
+    // Actualizar breadcrumb
+    const breadcrumb: string[] = [];
+    if (item.folder) breadcrumb.push(item.folder);
+    if (item.subfolder) breadcrumb.push(item.subfolder);
 
-    this.contentBreadcrumb.innerHTML = infoHtml || 'Recurso principal';
+    this.contentBreadcrumb.innerHTML = breadcrumb.length > 0
+      ? breadcrumb.map(escapeHtml).join(' › ')
+      : 'Recurso principal';
 
     // Renderizar contenido
     const canEmbed = canEmbedUrl(item.url);

@@ -43,6 +43,7 @@ export function getDOMElements(): DOMElements {
     // Header
     menuToggle: get<HTMLButtonElement>('menuToggle'),
     courseSelect: get<HTMLSelectElement>('courseSelect'),
+    btnLocation: get<HTMLButtonElement>('btnLocation'),
     btnRefresh: get<HTMLButtonElement>('btnRefresh'),
     btnHome: get<HTMLAnchorElement>('btnHome'),
 
@@ -56,7 +57,6 @@ export function getDOMElements(): DOMElements {
     navContainer: get<HTMLElement>('navContainer'),
 
     // Main content
-    contentHeader: getOptional<HTMLElement>('contentHeader'),
     contentTitle: get<HTMLElement>('contentTitle'),
     contentIcon: get<HTMLElement>('contentIcon'),
     contentBreadcrumb: get<HTMLElement>('contentBreadcrumb'),

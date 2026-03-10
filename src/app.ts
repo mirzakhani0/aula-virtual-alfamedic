@@ -105,45 +105,6 @@ export class App {
    * Configura todos los event listeners
    */
   private setupEventListeners(): void {
-    console.log('Setting up event listeners...');
-
-    // 1. Landing Page (Prioridad máxima)
-    if (this.elements.btnEnter && this.elements.landingPage) {
-      console.log('Landing Page elements found, attaching listeners');
-      this.elements.btnEnter.addEventListener('click', (e) => {
-        console.log('Enter button clicked');
-        e.preventDefault();
-        
-        // Ocultar landing con animación
-        this.elements.landingPage!.classList.add('hide');
-        vibrate([10, 20]);
-        
-        // Mostrar instrucciones después de la animación de landing
-        setTimeout(() => {
-          if (this.elements.landingPage) this.elements.landingPage.style.display = 'none';
-          if (this.elements.instructionsPage) {
-            this.elements.instructionsPage.style.display = 'flex';
-            console.log('Instructions page shown');
-          }
-        }, 600);
-      });
-    } else {
-      console.warn('Landing Page elements NOT found during setup');
-    }
-
-    // 2. Botón de inicio (finalizar instrucciones)
-    if (this.elements.btnStart && this.elements.instructionsPage) {
-      this.elements.btnStart.addEventListener('click', () => {
-        this.elements.instructionsPage!.classList.add('hide');
-        document.body.classList.remove('show-landing'); // Quitar filtro que oculta la app
-        vibrate([15]);
-
-        setTimeout(() => {
-          if (this.elements.instructionsPage) this.elements.instructionsPage.style.display = 'none';
-        }, 600);
-      });
-    }
-
     // Sidebar
     this.elements.menuToggle.addEventListener('click', () => {
       if (this.state.isMobile) {
@@ -234,6 +195,20 @@ export class App {
     this.navigation.onNavigate((direction) => this.navigate(direction));
     this.navigation.onHome(() => this.goToFirstItem());
     this.navigation.onRefresh(() => this.refreshData());
+
+    // Ubicación Actual
+    this.elements.btnLocation.addEventListener('click', () => {
+      const activeItem = this.state.flat.find(x => x.id === this.state.activeId);
+      if (activeItem) {
+        const path = [activeItem.folder, activeItem.subfolder, activeItem.name]
+          .filter(Boolean)
+          .join(' > ');
+        showToast(this.elements.toast, `📍 ${path}`, 3000);
+        vibrate([5]);
+      } else {
+        showToast(this.elements.toast, 'Selecciona un recurso para ver su ubicación');
+      }
+    });
 
     // Keyboard shortcuts
     document.addEventListener('keydown', (e) => this.handleKeyboard(e));
@@ -562,23 +537,16 @@ export class App {
     // Actualizar sidebar
     this.sidebar.setActiveItem(id);
 
-    // Obtener índice actual para navegación y player
-    const currentIndex = this.state.flat.findIndex(x => x.id === this.state.activeId);
-
     // Scroll al item activo (solo desktop)
     if (!this.state.isMobile) {
       this.sidebar.scrollToActive();
     }
 
     // Renderizar player
-    this.player.render(item, currentIndex, this.state.flat.length);
-
-    // Mostrar el encabezado de contenido si estaba oculto
-    if (this.elements.contentHeader) {
-      this.elements.contentHeader.style.display = 'block';
-    }
+    this.player.render(item);
 
     // Actualizar navegación
+    const currentIndex = this.state.flat.findIndex(x => x.id === this.state.activeId);
     this.navigation.update(currentIndex, this.state.flat.length);
 
     // Actualizar progress bar
