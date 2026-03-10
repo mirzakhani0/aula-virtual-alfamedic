@@ -81,4 +81,8 @@ export interface DOMElements {
 
   // Toast
   toast: HTMLElement;
+
+  // Landing Page
+  landingPage?: HTMLElement;
+  btnEnter?: HTMLButtonElement;
 }

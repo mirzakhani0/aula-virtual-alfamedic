@@ -161,6 +161,22 @@ export class App {
     // Sidebar items
     this.sidebar.onItemClick((id) => this.selectItem(id));
 
+    // Landing Page
+    if (this.elements.btnEnter && this.elements.landingPage) {
+      this.elements.btnEnter.addEventListener('click', () => {
+        this.elements.landingPage!.classList.add('hide');
+        document.body.classList.remove('show-landing');
+        vibrate([10, 20]);
+        
+        // Pequeño delay para quitar del DOM (opcional)
+        setTimeout(() => {
+          if (this.elements.landingPage) {
+            this.elements.landingPage.style.display = 'none';
+          }
+        }, 800);
+      });
+    }
+
     // Navigation
     this.navigation.onNavigate((direction) => this.navigate(direction));
     this.navigation.onHome(() => this.goToFirstItem());

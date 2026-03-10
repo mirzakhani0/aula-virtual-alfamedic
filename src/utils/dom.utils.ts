@@ -75,6 +75,10 @@ export function getDOMElements(): DOMElements {
     resourceCounter: getOptional<HTMLElement>('resourceCounter'),
 
     // Toast
-    toast: get<HTMLElement>('toast')
+    toast: get<HTMLElement>('toast'),
+
+    // Landing Page
+    landingPage: getOptional<HTMLElement>('landingPage'),
+    btnEnter: getOptional<HTMLButtonElement>('btnEnter')
   };
 }
