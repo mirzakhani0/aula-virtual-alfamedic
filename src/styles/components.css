@@ -16,7 +16,7 @@
   align-items: center;
   justify-content: space-between;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  z-index: 100;
+  z-index: 500; /* Header alto pero no el máximo */
   flex-shrink: 0;
   position: relative;
 }
@@ -136,6 +136,7 @@
   overflow: hidden;
   position: relative;
   height: calc(100vh - var(--header-height));
+  z-index: 10; /* Bajo para que nada dentro tape lo de fuera */
 }
 
 /* ============================================
@@ -417,7 +418,7 @@
 .skeleton-player { width: 100%; height: 100%; }
 
 /* ============================================
-   NAVEGACIÓN MÓVIL (REDiseño TOTAL)
+   NAVEGACIÓN MÓVIL (Botonera)
    ============================================ */
 
 .mobile-bottom-nav {
@@ -426,14 +427,14 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.98); /* Casi opaco para bloquear vista */
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-top: 1px solid var(--border-color);
   padding: 10px 0;
   padding-bottom: calc(10px + var(--safe-area-inset-bottom));
-  z-index: 3000; /* Prioridad máxima sobre la barra lateral */
-  box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.1);
+  z-index: 9999 !important; /* MÁXIMA PRIORIDAD */
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.15);
 }
 
 .mobile-nav-container {
@@ -463,11 +464,9 @@
 }
 
 .mobile-nav-btn i {
-  font-size: 20px;
+  font-size: 22px;
   color: var(--text-secondary);
   height: 24px;
-  display: flex;
-  align-items: center;
 }
 
 .mobile-nav-btn span {
@@ -504,18 +503,20 @@
     top: 0;
     bottom: 0;
     width: 280px;
-    z-index: 2500; /* Debajo de los botones (3000) */
+    z-index: 5000 !important; /* Debajo de los botones pero sobre el contenido */
     transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
   
   .sidebar.active { left: 0; }
   .sidebar-toggle { display: none; }
   
-  .mobile-bottom-nav { display: block; }
+  .mobile-bottom-nav { 
+    display: block !important; 
+  }
 
-  /* Asegurar espacio para que la barra no tape contenido */
+  /* Asegurar que la lista no quede tapada */
   .sidebar .course-navigation {
-    padding-bottom: 100px;
+    padding-bottom: 120px; /* Más espacio de seguridad */
   }
   
   .player-container {
@@ -529,7 +530,7 @@
 
 .toast {
   position: fixed;
-  bottom: 80px;
+  bottom: 100px; /* Subido para que no lo tape la barra */
   left: 50%;
   transform: translateX(-50%);
   background: #333;
@@ -538,6 +539,6 @@
   border-radius: 20px;
   opacity: 0;
   transition: opacity 0.3s;
-  z-index: 1000;
+  z-index: 10000;
 }
 .toast.show { opacity: 1; }
