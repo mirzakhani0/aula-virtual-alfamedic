@@ -106,7 +106,13 @@ export class App {
    */
   private setupEventListeners(): void {
     // Sidebar
-    this.elements.menuToggle.addEventListener('click', () => this.toggleSidebar());
+    this.elements.menuToggle.addEventListener('click', () => {
+      if (this.state.isMobile) {
+        this.toggleSidebar();
+      } else {
+        this.toggleSidebarCollapse();
+      }
+    });
 
     if (this.elements.sidebarToggle) {
       this.elements.sidebarToggle.addEventListener('click', (e) => {
