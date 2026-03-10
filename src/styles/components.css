@@ -432,13 +432,13 @@
   border-top: 1px solid var(--border-color);
   padding: 10px 0;
   padding-bottom: calc(10px + var(--safe-area-inset-bottom));
-  z-index: 2000;
+  z-index: 3000; /* Prioridad máxima sobre la barra lateral */
   box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.1);
 }
 
 .mobile-nav-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 columnas idénticas forzadas */
+  grid-template-columns: repeat(4, 1fr);
   align-items: center; 
   padding: 0 4px;
   max-width: 500px;
@@ -462,7 +462,6 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Forzar tamaño de iconos para que no varíen */
 .mobile-nav-btn i {
   font-size: 20px;
   color: var(--text-secondary);
@@ -479,7 +478,6 @@
   white-space: nowrap; 
 }
 
-/* Estado activo y hover */
 .mobile-nav-btn.active, 
 .mobile-nav-btn:active {
   color: var(--primary-color);
@@ -506,7 +504,7 @@
     top: 0;
     bottom: 0;
     width: 280px;
-    z-index: 2100;
+    z-index: 2500; /* Debajo de los botones (3000) */
     transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
   
@@ -515,29 +513,17 @@
   
   .mobile-bottom-nav { display: block; }
 
-  /* OCULTAR NAVEGACIÓN REDUNDANTE EN MÓVIL */
-  .nav-controls {
-    display: none !important; /* Quitamos los botones feos de en medio */
+  /* Asegurar espacio para que la barra no tape contenido */
+  .sidebar .course-navigation {
+    padding-bottom: 100px;
   }
   
   .player-container {
-    padding-bottom: 90px; /* Más espacio para la nueva barra */
+    padding-bottom: 90px;
   }
 
-  .sidebar-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.2); /* Mucho más transparente (antes 0.4) */
-    backdrop-filter: blur(2px); /* Menos desenfoque para ver mejor el fondo */
-    -webkit-backdrop-filter: blur(2px);
-    z-index: 2050;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-  .sidebar-overlay.active { 
-    display: block; 
-    opacity: 1;
+  .nav-controls {
+    display: none !important;
   }
 }
 
