@@ -60,6 +60,11 @@
     margin: 0;
   }
 
+  /* Ajuste de contenedor para permitir capas superiores */
+  .main-container {
+    z-index: auto;
+  }
+
   /* Sidebar en móvil */
   .sidebar {
     position: fixed;
@@ -68,14 +73,15 @@
     bottom: 0;
     width: 280px;
     transform: translateX(-105%); /* Un poco más de 100% para asegurar ocultamiento total */
-    z-index: 2000;
+    z-index: 3000;
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: none; /* Sin sombra cuando está oculto */
+    background: white;
   }
   
   .sidebar.active { 
     transform: translateX(0); 
-    box-shadow: 10px 0 30px rgba(0,0,0,0.15); /* Sombra solo cuando está activo */
+    box-shadow: 10px 0 30px rgba(0,0,0,0.2); /* Sombra solo cuando está activo */
   }
 
   /* Overlay para móvil */
@@ -85,13 +91,13 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 1900;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 2500;
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
     transition: all 0.4s ease;
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(3px);
   }
 
   .sidebar-overlay.active {
@@ -127,7 +133,7 @@
     background: var(--header-bg);
     backdrop-filter: var(--glass-blur);
     border-top: 1px solid var(--border-color);
-    z-index: 900;
+    z-index: 3100;
   }
 
   .mobile-nav-container {
