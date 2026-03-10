@@ -80,28 +80,6 @@ export class Player {
     this.playerElement.appendChild(iframe);
     this.currentIframe = iframe;
 
-    // Botón de auxilio por si Google bloquea el incrustado
-    const directLink = document.createElement('a');
-    directLink.href = item.url;
-    directLink.target = '_blank';
-    directLink.className = 'direct-access-link';
-    directLink.innerHTML = '<i class="fas fa-external-link-alt"></i> Abrir video en ventana nueva';
-    directLink.style.cssText = `
-      position: absolute;
-      bottom: 20px;
-      right: 20px;
-      background: #00416A;
-      color: white;
-      padding: 10px 18px;
-      border-radius: 30px;
-      font-size: 13px;
-      text-decoration: none;
-      z-index: 100;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-      font-weight: 600;
-    `;
-    this.playerElement.appendChild(directLink);
-
     if (window.innerWidth <= 768) {
       this.addTouchOverlay();
       this.addFloatingControls();
