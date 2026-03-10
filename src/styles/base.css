@@ -7,7 +7,6 @@
   margin: 0;
   padding: 0;
   -webkit-tap-highlight-color: transparent;
-  -webkit-touch-callout: none;
 }
 
 html {
@@ -33,7 +32,7 @@ body {
 }
 
 /* ============================================
-   LANDING PAGE STYLES
+   LANDING PAGE STYLES (MODERNO & FUNCIONAL)
    ============================================ */
 
 .landing-page {
@@ -49,16 +48,19 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 10000;
+  z-index: 50000;
   transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   color: #1a1a1b;
   text-align: center;
+  pointer-events: auto;
 }
 
 .landing-content {
   max-width: 800px;
   padding: 40px 24px;
   animation: fadeInUp 0.8s ease-out;
+  position: relative;
+  z-index: 50001;
 }
 
 .landing-logo {
@@ -119,7 +121,7 @@ body {
 
 .btn-enter {
   background: linear-gradient(135deg, #007BFF 0%, #0056b3 100%);
-  color: #FFFFFF;
+  color: #FFFFFF !important;
   border: none;
   padding: 18px 48px;
   border-radius: 14px;
@@ -128,10 +130,14 @@ body {
   cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 12px;
   margin: 0 auto;
-  box-shadow: 0 20px 25px -5px rgba(0, 123, 255, 0.3), 0 10px 10px -5px rgba(0, 123, 255, 0.1);
+  box-shadow: 0 20px 25px -5px rgba(0, 123, 255, 0.3);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  z-index: 50005;
+  text-decoration: none;
 }
 
 .btn-enter:hover {
@@ -184,7 +190,7 @@ body.show-landing .mobile-bottom-nav {
   }
   .feature-item i { width: 48px; height: 48px; font-size: 20px; }
   .feature-item span { font-size: 10px; }
-  .btn-enter { padding: 16px 36px; width: 100%; justify-content: center; }
+  .btn-enter { padding: 16px 36px; width: 100%; max-width: 300px; }
 }
 
 /* ============================================
@@ -201,21 +207,21 @@ body.show-landing .mobile-bottom-nav {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start; /* Permitir que el contenido empiece arriba */
-  z-index: 9999;
+  justify-content: flex-start;
+  z-index: 40000;
   transition: all 0.6s ease;
   color: #1a1a1b;
   text-align: center;
-  overflow-y: auto; /* Habilitar scroll vertical */
+  overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
 
 .instructions-content {
   width: 100%;
   max-width: 1000px;
-  padding: 60px 24px; /* Más padding superior e inferior */
+  padding: 60px 24px;
   animation: fadeIn 0.8s ease-out;
-  flex-shrink: 0; /* Evitar que el contenido se encoja */
+  flex-shrink: 0;
 }
 
 .instructions-title {
@@ -304,7 +310,7 @@ body.show-landing .mobile-bottom-nav {
 
 .btn-start {
   background: linear-gradient(135deg, #007BFF 0%, #0056b3 100%);
-  color: #FFFFFF;
+  color: #FFFFFF !important;
   border: none;
   padding: 18px 50px;
   border-radius: 16px;
@@ -313,10 +319,12 @@ body.show-landing .mobile-bottom-nav {
   cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 12px;
   margin: 0 auto;
   box-shadow: 0 20px 25px -5px rgba(0, 123, 255, 0.3);
   transition: all 0.3s ease;
+  text-decoration: none;
 }
 
 .btn-start:hover {
@@ -336,10 +344,13 @@ body.show-landing .mobile-bottom-nav {
     gap: 24px;
   }
   .step-card { padding: 32px 24px; }
-  .btn-start { width: 100%; justify-content: center; }
+  .btn-start { width: 100%; max-width: 300px; }
 }
 
-/* Glassmorphism */
+/* ============================================
+   ESTILOS APP (EXISTENTES)
+   ============================================ */
+
 .header {
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
@@ -355,7 +366,6 @@ body.show-landing .mobile-bottom-nav {
   border-right: 1px solid var(--border-color);
 }
 
-/* Dashboard Styles */
 .dashboard {
   padding: 40px 24px;
   max-width: 1100px;
@@ -429,7 +439,6 @@ body.show-landing .mobile-bottom-nav {
   transform: scale(1.1);
 }
 
-/* Skeleton Pulse */
 @keyframes skeletonPulse {
   0% { background-position: 200% 0; }
   100% { background-position: -200% 0; }
@@ -457,7 +466,6 @@ body.no-scroll {
   overflow: hidden;
 }
 
-/* Scrollbars personalizados */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -477,7 +485,6 @@ body.no-scroll {
   background: linear-gradient(135deg, var(--primary-light), var(--accent-color));
 }
 
-/* Animaciones */
 @keyframes pulse {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.1); }
@@ -492,7 +499,6 @@ body.no-scroll {
   50% { transform: translateY(-4px); }
 }
 
-/* Loading spinner */
 .loading-spinner {
   display: inline-block;
   width: 24px;
