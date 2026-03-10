@@ -528,11 +528,17 @@
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(4px);
+    background: rgba(0, 0, 0, 0.2); /* Mucho más transparente (antes 0.4) */
+    backdrop-filter: blur(2px); /* Menos desenfoque para ver mejor el fondo */
+    -webkit-backdrop-filter: blur(2px);
     z-index: 2050;
+    opacity: 0;
+    transition: opacity 0.3s ease;
   }
-  .sidebar-overlay.active { display: block; }
+  .sidebar-overlay.active { 
+    display: block; 
+    opacity: 1;
+  }
 }
 
 .toast {
