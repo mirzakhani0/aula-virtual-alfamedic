@@ -88,6 +88,28 @@ export class Player {
     this.playerElement.appendChild(iframe);
     this.currentIframe = iframe;
 
+    // Agregar botón de acceso directo si falla el embed
+    const directLink = document.createElement('a');
+    directLink.href = item.url;
+    directLink.target = '_blank';
+    directLink.className = 'direct-access-link';
+    directLink.innerHTML = '<i class="fas fa-external-link-alt"></i> Abrir directamente si no carga';
+    directLink.style.cssText = `
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background: rgba(0, 65, 106, 0.8);
+      color: white;
+      padding: 8px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      text-decoration: none;
+      z-index: 10;
+      backdrop-filter: blur(4px);
+      transition: all 0.3s ease;
+    `;
+    this.playerElement.appendChild(directLink);
+
     // Agregar overlay para capturar gestos en móvil
     if (window.innerWidth <= 768) {
       this.addTouchOverlay();
