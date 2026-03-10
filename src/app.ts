@@ -534,6 +534,11 @@ export class App {
     // Renderizar player
     this.player.render(item, currentIndex, this.state.flat.length);
 
+    // Mostrar el encabezado de contenido si estaba oculto
+    if (this.elements.contentHeader) {
+      this.elements.contentHeader.style.display = 'block';
+    }
+
     // Actualizar navegación
     this.navigation.update(currentIndex, this.state.flat.length);
 

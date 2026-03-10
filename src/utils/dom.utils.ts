@@ -56,6 +56,7 @@ export function getDOMElements(): DOMElements {
     navContainer: get<HTMLElement>('navContainer'),
 
     // Main content
+    contentHeader: getOptional<HTMLElement>('contentHeader'),
     contentTitle: get<HTMLElement>('contentTitle'),
     contentIcon: get<HTMLElement>('contentIcon'),
     contentBreadcrumb: get<HTMLElement>('contentBreadcrumb'),

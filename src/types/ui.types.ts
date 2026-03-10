@@ -61,6 +61,7 @@ export interface DOMElements {
   navContainer: HTMLElement;
 
   // Main content
+  contentHeader?: HTMLElement;
   contentTitle: HTMLElement;
   contentIcon: HTMLElement;
   contentBreadcrumb: HTMLElement;
