@@ -19,8 +19,8 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   
-  <!-- CSS Direct Link (Backup) -->
-  <link rel="stylesheet" href="/src/styles/main.css">
+  <!-- CSS Direct Link (Relative Path for GitHub Pages) -->
+  <link rel="stylesheet" href="./src/styles/main.css">
 
   <!-- XLSX Library -->
   <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
@@ -77,10 +77,12 @@
       </div>
 
       <nav id="navContainer" class="course-navigation">
-        <div class="skeleton-nav" style="padding: 20px;">
-          <div style="height: 40px; background: #eee; margin-bottom: 10px; border-radius: 8px;"></div>
-          <div style="height: 40px; background: #eee; margin-bottom: 10px; border-radius: 8px;"></div>
-          <div style="height: 40px; background: #eee; margin-bottom: 10px; border-radius: 8px;"></div>
+        <!-- Skeleton Loading -->
+        <div style="padding: 16px;">
+          <div class="skeleton" style="width: 40%; height: 12px; margin-bottom: 24px;"></div>
+          <div class="skeleton" style="height: 44px; margin-bottom: 8px;"></div>
+          <div class="skeleton" style="height: 44px; margin-bottom: 8px;"></div>
+          <div class="skeleton" style="height: 44px; margin-bottom: 8px;"></div>
         </div>
       </nav>
     </aside>
@@ -121,12 +123,12 @@
       <button id="mobileMenuBtn" class="mobile-nav-btn"><i class="fas fa-bars"></i><span>Menú</span></button>
       <button id="mobilePrevBtn" class="mobile-nav-btn" disabled><i class="fas fa-chevron-left"></i><span>Anterior</span></button>
       <button id="mobileHomeBtn" class="mobile-nav-btn"><i class="fas fa-home"></i><span>Inicio</span></button>
-      <button id="mobileNextBtn" class="mobile-nav-btn"><i class="fas fa-chevron-right"></i><span>Siguiente</span></button>
+      <button id="mobileNextBtn" class="mobile-nav-btn"><i class="fas fa-chevron-right"><span>Siguiente</span></button>
       <button id="mobileRefreshBtn" class="mobile-nav-btn"><i class="fas fa-sync-alt"></i><span>Actualizar</span></button>
     </div>
   </nav>
 
   <div id="toast" class="toast"></div>
-  <script type="module" src="/src/main.ts"></script>
+  <script type="module" src="./src/main.ts"></script>
 </body>
 </html>
