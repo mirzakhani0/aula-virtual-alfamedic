@@ -11,7 +11,7 @@ import type {
 } from '../types/api.types';
 
 export class ApiService {
-  private readonly API_URL = 'https://script.google.com/macros/s/AKfycbwdb4ToRIuHsfkfB5cXuQisJUY-qlUYxvX0d8mpkX9iGaH4eSj4QLNxhRCpRkDPQPbG/exec';
+  private readonly API_URL = 'https://script.google.com/macros/s/AKfycbxpQLMAswkrbx9F3zC5YbWa9OG6jraZBHhzYffJjR2jyXR2P5GWOzkywdTRwd0ckTw6rw/exec';
 
   /**
    * Llama a la API con fetch() y maneja errores
