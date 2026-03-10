@@ -31,16 +31,58 @@ export class Sidebar {
 
     grouped.forEach((subMap, folder) => {
       const section = this.createSection(folder);
-
       const sortedSubfolders = [...subMap.keys()].sort(naturalCompare);
+      
+      let containsActive = false;
 
       sortedSubfolders.forEach(subfolder => {
         const items = subMap.get(subfolder) || [];
+        const isSubActive = items.some(item => item.id === activeId);
         const subSection = this.createSubSection(subfolder, items, activeId);
+        
+        if (isSubActive) {
+          containsActive = true;
+        } else {
+          subSection.classList.add('collapsed');
+        }
+        
         section.appendChild(subSection);
       });
 
+      if (!containsActive && grouped.size > 1) {
+        section.classList.add('collapsed');
+      }
+
       this.navContainer.appendChild(section);
+    });
+
+    this.setupAccordion();
+  }
+
+  /**
+   * Configura los eventos de acordeón
+   */
+  private setupAccordion(): void {
+    // Click en secciones principales
+    this.navContainer.querySelectorAll('.section-title').forEach(title => {
+      title.addEventListener('click', (e) => {
+        const section = (e.currentTarget as HTMLElement).parentElement;
+        if (section) {
+          section.classList.toggle('collapsed');
+          vibrate(2);
+        }
+      });
+    });
+
+    // Click en subsecciones
+    this.navContainer.querySelectorAll('.sub-title').forEach(title => {
+      title.addEventListener('click', (e) => {
+        const subSection = (e.currentTarget as HTMLElement).parentElement;
+        if (subSection) {
+          subSection.classList.toggle('collapsed');
+          vibrate(2);
+        }
+      });
     });
   }
 
@@ -109,7 +151,7 @@ export class Sidebar {
 
     const subTitle = document.createElement('div');
     subTitle.className = 'sub-title';
-    subTitle.textContent = subfolderName;
+    subTitle.innerHTML = `<i class="fas fa-chevron-down"></i> ${escapeHtml(subfolderName)}`;
     subSection.appendChild(subTitle);
 
     const list = document.createElement('ul');

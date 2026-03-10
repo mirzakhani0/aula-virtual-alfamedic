@@ -178,66 +178,84 @@
 .sidebar {
   width: var(--sidebar-width);
   background: var(--sidebar-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
   border-right: 1px solid var(--border-color);
   display: flex;
   flex-direction: column;
-  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   flex-shrink: 0;
   height: 100%;
-  overflow: hidden;
+  overflow: visible; /* Cambiado de hidden para que el botón flote */
   position: relative;
-  box-shadow: 2px 0 12px rgba(0,0,0,0.05);
+  box-shadow: 4px 0 24px rgba(0,0,0,0.08);
+  z-index: 100;
+}
+
+.sidebar.collapsed {
+  width: 0;
+  border-right: none;
 }
 
 .sidebar-header {
-  padding: 16px;
+  padding: 20px 16px;
   border-bottom: 1px solid var(--border-color);
-  background: white;
+  background: rgba(255, 255, 255, 0.4);
   flex-shrink: 0;
   transition: all 0.3s;
 }
 
 .sidebar-title {
-  font-size: 17px;
-  font-weight: 700;
-  margin-bottom: 12px;
-  line-height: 1.3;
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 16px;
+  line-height: 1.2;
   color: var(--text-primary);
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  letter-spacing: -0.5px;
 }
 
+/* Botón Toggle Flotante Mejorado */
 .sidebar-toggle {
   position: absolute;
-  right: -16px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 32px;
-  height: 64px;
-  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-  border: none;
-  border-radius: 0 10px 10px 0;
+  right: -20px;
+  top: 100px; /* Posición más ergonómica */
+  width: 40px;
+  height: 40px;
+  background: white;
+  color: var(--primary-color);
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 50;
-  transition: all 0.3s;
-  box-shadow: 2px 0 8px rgba(99, 102, 241, 0.3);
+  z-index: 150;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
 .sidebar-toggle:hover {
-  background: linear-gradient(135deg, var(--primary-light), var(--secondary-color));
-  right: -18px;
-  width: 34px;
+  transform: scale(1.1);
+  background: var(--primary-color);
+  color: white;
+  box-shadow: 0 6px 16px rgba(0, 65, 106, 0.3);
+}
+
+.sidebar-toggle:active {
+  transform: scale(0.9);
 }
 
 .sidebar-toggle i {
-  color: white;
-  font-size: 16px;
-  transition: transform 0.3s;
+  font-size: 14px;
+  transition: transform 0.4s;
+}
+
+.sidebar.collapsed .sidebar-toggle {
+  right: -50px; /* Se aleja un poco cuando está cerrado para no estorbar */
 }
 
 .sidebar.collapsed .sidebar-toggle i {
@@ -246,18 +264,18 @@
 
 /* Progress bar */
 .progress-bar {
-  height: 6px;
-  background: var(--border-color);
+  height: 8px;
+  background: rgba(0, 0, 0, 0.05);
   border-radius: 10px;
   overflow: hidden;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 
 .progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--success-color), var(--primary-color));
+  background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
   border-radius: 10px;
-  transition: width 0.5s ease;
+  transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
   width: 0%;
 }
 
@@ -269,28 +287,19 @@
 
 .search-input {
   width: 100%;
-  padding: 11px 38px 11px 12px;
-  border: 2px solid var(--border-color);
-  border-radius: 10px;
+  padding: 12px 40px 12px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
   font-size: 14px;
-  transition: all 0.2s;
-  background: white;
+  transition: all 0.3s;
+  background: rgba(255, 255, 255, 0.7);
 }
 
 .search-input:focus {
   outline: none;
   border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
-}
-
-.search-icon {
-  position: absolute;
-  right: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--text-secondary);
-  pointer-events: none;
-  font-size: 15px;
+  background: white;
+  box-shadow: 0 0 0 4px rgba(0, 65, 106, 0.1);
 }
 
 /* Course navigation */
@@ -298,107 +307,168 @@
   flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
-  padding: 12px;
+  padding: 16px 12px;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
 }
 
 .course-section {
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 .section-title {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 800;
   color: var(--text-secondary);
   text-transform: uppercase;
-  padding: 10px 12px;
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
-  border-radius: 8px;
-  margin-bottom: 10px;
-  letter-spacing: 0.5px;
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
   position: sticky;
   top: 0;
   z-index: 10;
-  backdrop-filter: blur(10px);
-  border-left: 3px solid var(--primary-color);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s;
+}
+
+.section-title:hover {
+  background: white;
+  color: var(--primary-color);
+}
+
+.section-title::after {
+  content: '\f078';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  font-size: 10px;
+  transition: transform 0.3s;
+}
+
+.course-section.collapsed .section-title::after {
+  transform: rotate(-90deg);
+}
+
+.course-section.collapsed .sub-section {
+  display: none;
 }
 
 .sub-section {
-  margin-bottom: 14px;
+  margin-bottom: 8px;
+  padding-left: 4px;
 }
 
 .sub-title {
   font-size: 13px;
   font-weight: 700;
   color: var(--primary-color);
-  margin: 8px 0 8px 8px;
+  margin: 12px 0 8px 8px;
   line-height: 1.4;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
+  cursor: pointer;
+  transition: opacity 0.2s;
 }
 
-.sub-title::before {
-  content: '📚';
+.sub-title:hover {
+  opacity: 0.8;
+}
+
+.sub-title i {
   font-size: 14px;
+  transition: transform 0.3s;
+}
+
+.sub-section.collapsed .sub-title i {
+  transform: rotate(-90deg);
+}
+
+.sub-section.collapsed .lesson-list {
+  display: none;
 }
 
 .lesson-list {
   list-style: none;
+  border-left: 2px solid rgba(0, 65, 106, 0.1);
+  margin-left: 14px;
+  padding-left: 8px;
 }
 
 .lesson-item {
-  margin-bottom: 3px;
+  margin-bottom: 4px;
 }
 
 .lesson-item a {
   display: flex;
   align-items: center;
-  padding: 12px 12px;
-  border-radius: 10px;
+  padding: 10px 14px;
+  border-radius: 12px;
   text-decoration: none;
   color: var(--text-primary);
-  transition: all 0.2s;
-  gap: 10px;
-  min-height: 46px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  gap: 12px;
+  min-height: 44px;
   position: relative;
-  background: white;
+  background: transparent;
   border: 1px solid transparent;
 }
 
 .lesson-item a:hover {
-  background: var(--hover-bg);
+  background: rgba(255, 255, 255, 0.6);
   border-color: var(--border-color);
   transform: translateX(4px);
-}
-
-.lesson-item a:active {
-  transform: scale(0.98);
+  color: var(--primary-color);
 }
 
 .lesson-item.active a {
-  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-  color: white;
-  font-weight: 600;
-  box-shadow: var(--card-shadow);
-  border-color: var(--primary-color);
+  background: white;
+  color: var(--primary-color);
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-left: 4px solid var(--primary-color);
+}
+
+.lesson-item.active a::before {
+  content: '';
+  position: absolute;
+  left: -14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--primary-color);
 }
 
 .lesson-icon {
-  font-size: 18px;
-  width: 26px;
+  font-size: 16px;
+  width: 20px;
   text-align: center;
   flex-shrink: 0;
-  transition: all 0.3s;
+  color: var(--text-secondary);
 }
 
 .lesson-item.active .lesson-icon {
-  animation: bounce 0.5s ease;
+  color: var(--primary-color);
+  animation: pulse-small 2s infinite;
+}
+
+@keyframes pulse-small {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
 }
 
 .lesson-name {
-  font-size: 14px;
+  font-size: 13.5px;
   line-height: 1.4;
   word-break: break-word;
   flex: 1;
