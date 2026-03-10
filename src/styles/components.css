@@ -493,23 +493,10 @@
 }
 
 /* ============================================
-   RESPONSIVE
+   RESPONSIVE (Básico)
    ============================================ */
 
 @media (max-width: 768px) {
-  .sidebar {
-    position: fixed;
-    left: -100%;
-    top: 0;
-    bottom: 0;
-    width: 280px;
-    z-index: 5000 !important; 
-    transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    background: white;
-  }
-  
-  .sidebar.active { left: 0; }
-  
   .mobile-bottom-nav { display: block !important; }
 
   .sidebar .course-navigation {

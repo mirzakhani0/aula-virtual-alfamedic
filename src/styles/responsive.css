@@ -65,23 +65,27 @@
     z-index: auto;
   }
 
-  /* Sidebar en móvil */
+  /* Sidebar en móvil - Posición fija y ocultamiento total */
   .sidebar {
     position: fixed;
     top: 0;
     left: 0;
     bottom: 0;
     width: 280px;
-    transform: translateX(-105%); /* Un poco más de 100% para asegurar ocultamiento total */
+    transform: translateX(-100%); /* Oculto completamente fuera de la pantalla */
     z-index: 3000;
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: none; /* Sin sombra cuando está oculto */
+    box-shadow: none; 
     background: white;
+    pointer-events: none; /* No clickable cuando está oculto */
+    visibility: hidden; /* No visible para el navegador */
   }
   
   .sidebar.active { 
-    transform: translateX(0); 
-    box-shadow: 10px 0 30px rgba(0,0,0,0.2); /* Sombra solo cuando está activo */
+    transform: translateX(0); /* Deslizar hacia la pantalla */
+    box-shadow: 10px 0 40px rgba(0,0,0,0.3); 
+    pointer-events: auto; /* Clickable cuando está visible */
+    visibility: visible;
   }
 
   /* Overlay para móvil */
