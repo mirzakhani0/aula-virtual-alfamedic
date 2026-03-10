@@ -247,6 +247,10 @@
 
 .course-section { margin-bottom: 20px; }
 
+.course-section.collapsed .sub-section {
+  display: none;
+}
+
 .section-title {
   font-size: 11px;
   font-weight: 800;
@@ -259,7 +263,28 @@
   cursor: pointer;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   border: 1px solid var(--border-color);
+  transition: all 0.2s ease;
+}
+
+.section-title::after {
+  content: '\f078';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  transition: transform 0.3s ease;
+}
+
+.course-section.collapsed .section-title::after {
+  transform: rotate(-90deg);
+}
+
+.sub-section {
+  margin-bottom: 10px;
+}
+
+.sub-section.collapsed .lesson-list {
+  display: none;
 }
 
 .sub-title {
@@ -268,6 +293,18 @@
   color: var(--primary-color);
   margin: 10px 0 5px 5px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sub-title i {
+  transition: transform 0.3s ease;
+  font-size: 10px;
+}
+
+.sub-section.collapsed .sub-title i {
+  transform: rotate(-90deg);
 }
 
 .lesson-list {
