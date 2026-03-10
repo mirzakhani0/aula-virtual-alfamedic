@@ -90,51 +90,8 @@ export class Player {
     this.currentIframe = iframe;
 
     if (window.innerWidth <= 768) {
-      this.addTouchOverlay();
       this.addFloatingControls();
     }
-  }
-
-  /**
-   * Agregar overlay transparente para capturar gestos sobre iframe
-   */
-  private addTouchOverlay(): void {
-    const overlay = document.createElement('div');
-    overlay.className = 'touch-overlay';
-    overlay.style.cssText = `
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 5;
-      pointer-events: auto;
-      touch-action: none;
-    `;
-
-    // El overlay captura los gestos pero no interfiere con clicks simples
-    let isGesture = false;
-
-    overlay.addEventListener('touchstart', (e) => {
-      if (e.touches.length >= 2) {
-        isGesture = true;
-        overlay.style.pointerEvents = 'auto';
-      } else {
-        isGesture = false;
-        overlay.style.pointerEvents = 'none';
-      }
-    });
-
-    overlay.addEventListener('touchend', () => {
-      // Después de un gesto, permitir clicks por un momento
-      setTimeout(() => {
-        if (!isGesture) {
-          overlay.style.pointerEvents = 'none';
-        }
-      }, 100);
-    });
-
-    this.playerElement.appendChild(overlay);
   }
 
   /**
