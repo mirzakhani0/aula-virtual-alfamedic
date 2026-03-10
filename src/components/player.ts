@@ -29,8 +29,7 @@ export class Player {
    * Renderiza un item en el player
    */
   render(item: CourseItem, currentIndex: number = -1, totalItems: number = 0): void {
-    // Actualizar header
-    this.contentTitle.textContent = item.name || 'Sin nombre';
+    // Actualizar icono
     this.contentIcon.className = `${item.icon || 'fas fa-play-circle'} content-icon`;
 
     // Actualizar breadcrumb y progreso
