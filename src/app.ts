@@ -105,6 +105,45 @@ export class App {
    * Configura todos los event listeners
    */
   private setupEventListeners(): void {
+    console.log('Setting up event listeners...');
+
+    // 1. Landing Page (Prioridad máxima)
+    if (this.elements.btnEnter && this.elements.landingPage) {
+      console.log('Landing Page elements found, attaching listeners');
+      this.elements.btnEnter.addEventListener('click', (e) => {
+        console.log('Enter button clicked');
+        e.preventDefault();
+        
+        // Ocultar landing con animación
+        this.elements.landingPage!.classList.add('hide');
+        vibrate([10, 20]);
+        
+        // Mostrar instrucciones después de la animación de landing
+        setTimeout(() => {
+          if (this.elements.landingPage) this.elements.landingPage.style.display = 'none';
+          if (this.elements.instructionsPage) {
+            this.elements.instructionsPage.style.display = 'flex';
+            console.log('Instructions page shown');
+          }
+        }, 600);
+      });
+    } else {
+      console.warn('Landing Page elements NOT found during setup');
+    }
+
+    // 2. Botón de inicio (finalizar instrucciones)
+    if (this.elements.btnStart && this.elements.instructionsPage) {
+      this.elements.btnStart.addEventListener('click', () => {
+        this.elements.instructionsPage!.classList.add('hide');
+        document.body.classList.remove('show-landing'); // Quitar filtro que oculta la app
+        vibrate([15]);
+
+        setTimeout(() => {
+          if (this.elements.instructionsPage) this.elements.instructionsPage.style.display = 'none';
+        }, 600);
+      });
+    }
+
     // Sidebar
     this.elements.menuToggle.addEventListener('click', () => {
       if (this.state.isMobile) {
