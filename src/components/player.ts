@@ -58,62 +58,51 @@ export class Player {
    * Renderiza contenido embebido
    */
   private renderEmbedded(item: CourseItem): void {
-    const isDriveVideo = item.url.includes('drive.google.com') && item.type === 'video';
     const isPDF = item.mime === 'application/pdf' || item.type === 'pdf' || item.url.includes('.pdf');
+    let embedUrl = item.embedUrl;
 
-    this.playerElement.innerHTML = '';
-
-    if (isDriveVideo) {
-      // REPRODUCTOR NATIVO PARA GOOGLE DRIVE (Bypassa bloqueos de iframe)
+    // Forzar el formato más compatible para Google Drive
+    if (item.url.includes('drive.google.com')) {
       const fileId = item.url.match(/\/d\/([^/]+)/);
-      const videoSrc = fileId ? `https://drive.google.com/uc?export=download&id=${fileId[1]}` : item.url;
-      
-      this.playerElement.innerHTML = `
-        <video controls controlsList="nodownload" style="width: 100%; height: 100%; border-radius: 12px; background: black;">
-          <source src="${videoSrc}" type="video/mp4">
-          Tu navegador no soporta el reproductor de video.
-        </video>
-      `;
-    } else {
-      // Mantener iframe para YouTube y PDFs
-      let enhancedUrl = item.embedUrl;
-      if (isPDF && item.embedUrl.includes('drive.google.com')) {
-        enhancedUrl = item.embedUrl.includes('?') ? `${item.embedUrl}&embedded=true` : `${item.embedUrl}?embedded=true`;
+      if (fileId) {
+        embedUrl = `https://docs.google.com/file/d/${fileId[1]}/preview`;
       }
-
-      const iframe = document.createElement('iframe');
-      iframe.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
-      iframe.allowFullscreen = true;
-      iframe.src = enhancedUrl;
-      iframe.style.width = '100%';
-      iframe.style.height = '100%';
-      iframe.style.border = 'none';
-      this.playerElement.appendChild(iframe);
-      this.currentIframe = iframe;
     }
 
-    // Botón de acceso directo como Plan B
+    this.playerElement.innerHTML = '';
+    const iframe = document.createElement('iframe');
+    iframe.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+    iframe.allowFullscreen = true;
+    iframe.src = embedUrl;
+    iframe.style.width = '100%';
+    iframe.style.height = '100%';
+    iframe.style.border = 'none';
+    
+    this.playerElement.appendChild(iframe);
+    this.currentIframe = iframe;
+
+    // Botón de auxilio por si Google bloquea el incrustado
     const directLink = document.createElement('a');
     directLink.href = item.url;
     directLink.target = '_blank';
     directLink.className = 'direct-access-link';
-    directLink.innerHTML = '<i class="fas fa-external-link-alt"></i> Ver en Google Drive';
+    directLink.innerHTML = '<i class="fas fa-external-link-alt"></i> Abrir video en ventana nueva';
     directLink.style.cssText = `
       position: absolute;
       bottom: 20px;
       right: 20px;
-      background: rgba(0, 65, 106, 0.9);
+      background: #00416A;
       color: white;
-      padding: 10px 16px;
+      padding: 10px 18px;
       border-radius: 30px;
       font-size: 13px;
       text-decoration: none;
       z-index: 100;
       box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      font-weight: 600;
     `;
     this.playerElement.appendChild(directLink);
 
-    // Agregar overlay para capturar gestos en móvil
     if (window.innerWidth <= 768) {
       this.addTouchOverlay();
       this.addFloatingControls();
