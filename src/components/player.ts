@@ -63,9 +63,18 @@ export class Player {
     // Forzar el formato más compatible para Google Drive
     if (item.url.includes('drive.google.com')) {
       const fileId = item.url.match(/\/d\/([^/]+)/);
-      if (fileId) {
+      if (fileId && fileId[1]) {
         embedUrl = `https://docs.google.com/file/d/${fileId[1]}/preview`;
+      } else {
+        // Si no hay ID válido, mostrar mensaje de error en lugar de iframe roto
+        this.renderNoPreview();
+        return;
       }
+    }
+
+    if (!embedUrl || embedUrl === 'undefined') {
+      this.renderNoPreview();
+      return;
     }
 
     this.playerElement.innerHTML = '';
