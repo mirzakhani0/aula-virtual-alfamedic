@@ -3,6 +3,9 @@
  */
 
 :root {
+  /* Tipografía */
+  --font-family: 'Lexend', sans-serif;
+
   /* Colores principales */
   --primary-color: #007BFF;    /* Azul claro vibrante */
   --primary-light: #4DABFF;
