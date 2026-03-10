@@ -199,18 +199,23 @@ body.show-landing .mobile-bottom-nav {
   height: 100%;
   background: #FFFFFF;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start; /* Permitir que el contenido empiece arriba */
   z-index: 9999;
   transition: all 0.6s ease;
   color: #1a1a1b;
   text-align: center;
+  overflow-y: auto; /* Habilitar scroll vertical */
+  -webkit-overflow-scrolling: touch;
 }
 
 .instructions-content {
+  width: 100%;
   max-width: 1000px;
-  padding: 40px 24px;
+  padding: 60px 24px; /* Más padding superior e inferior */
   animation: fadeIn 0.8s ease-out;
+  flex-shrink: 0; /* Evitar que el contenido se encoja */
 }
 
 .instructions-title {
