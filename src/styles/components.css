@@ -438,9 +438,11 @@
 
 .mobile-nav-container {
   display: grid;
-  grid-template-columns: repeat(5, 1fr); /* 5 columnas iguales garantizadas */
-  align-items: center;
+  grid-template-columns: repeat(5, 1fr); /* 5 columnas idénticas forzadas */
+  align-items: end; /* Alineamos todo a la base */
   padding: 0 4px;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 .mobile-nav-btn {
@@ -455,22 +457,26 @@
   gap: 4px;
   transition: all 0.2s ease;
   padding: 8px 0;
-  position: relative;
+  width: 100%; /* Cada botón ocupa todo su slot */
+  overflow: hidden; /* Evita que el texto rompa el diseño */
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Iconos más grandes y definidos */
+/* Forzar tamaño de iconos para que no varíen */
 .mobile-nav-btn i {
-  font-size: 22px;
+  font-size: 20px;
   color: var(--text-secondary);
+  height: 24px;
+  display: flex;
+  align-items: center;
 }
 
-/* Etiquetas de texto más limpias */
 .mobile-nav-btn span {
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.5px;
+  white-space: nowrap; /* Evita que el texto se parta en dos líneas */
 }
 
 /* Estado activo y hover */
