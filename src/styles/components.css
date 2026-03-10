@@ -417,7 +417,7 @@
 .skeleton-player { width: 100%; height: 100%; }
 
 /* ============================================
-   NAVEGACIÓN MÓVIL (ESTILO APP)
+   NAVEGACIÓN MÓVIL (REDiseño TOTAL)
    ============================================ */
 
 .mobile-bottom-nav {
@@ -426,103 +426,117 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
-  padding: 8px 0;
-  padding-bottom: calc(8px + var(--safe-area-inset-bottom));
-  z-index: 1000;
-  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid var(--border-color);
+  padding: 10px 0;
+  padding-bottom: calc(10px + var(--safe-area-inset-bottom));
+  z-index: 2000;
+  box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.1);
 }
 
 .mobile-nav-container {
-  display: flex;
-  justify-content: space-around;
-  align-items: flex-end; /* Alinea los botones a la base */
-  padding: 0 10px;
-  max-width: 500px;
-  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 columnas iguales garantizadas */
+  align-items: center;
+  padding: 0 4px;
 }
 
 .mobile-nav-btn {
   background: transparent;
   border: none;
   color: var(--text-secondary);
-  padding: 6px;
   cursor: pointer;
-  font-size: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 4px;
-  transition: all 0.2s;
-  flex: 1;
-  min-width: 50px;
-  font-weight: 600;
+  transition: all 0.2s ease;
+  padding: 8px 0;
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
 }
 
+/* Iconos más grandes y definidos */
 .mobile-nav-btn i {
-  font-size: 20px;
-  transition: transform 0.2s;
+  font-size: 22px;
+  color: var(--text-secondary);
 }
 
-.mobile-nav-btn:active i {
-  transform: scale(0.9);
+/* Etiquetas de texto más limpias */
+.mobile-nav-btn span {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
 }
 
-.mobile-nav-btn.active {
+/* Estado activo y hover */
+.mobile-nav-btn.active, 
+.mobile-nav-btn:active {
   color: var(--primary-color);
 }
 
-/* Botón Home Destacado (Círculo central) */
+.mobile-nav-btn:active i {
+  transform: scale(0.85);
+}
+
+/* Estilo especial para el botón central (Home) */
 #mobileHomeBtn {
-  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+  background: var(--primary-color);
   color: white;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  margin-top: -30px; /* Lo eleva sobre la barra */
-  box-shadow: 0 6px 16px rgba(0, 65, 106, 0.3);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: none; /* Evita que crezca */
+  width: 50px;
+  height: 50px;
+  border-radius: 15px; /* Cuadrado redondeado moderno */
+  margin: 0 auto;
+  box-shadow: 0 4px 12px rgba(0, 65, 106, 0.3);
+  transform: translateY(-5px); /* Un poco elevado */
 }
 
 #mobileHomeBtn i {
+  color: white;
   font-size: 24px;
 }
 
 #mobileHomeBtn span {
-  display: none; /* Ocultamos el texto solo en el botón central */
+  display: none; /* Quitamos el texto del centro para que se vea minimalista */
 }
 
 .mobile-nav-btn:disabled {
-  opacity: 0.3;
-  filter: grayscale(1);
+  opacity: 0.2;
 }
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
 
 @media (max-width: 768px) {
   .menu-toggle { display: flex; }
+  
   .sidebar {
     position: fixed;
     left: -100%;
     top: 0;
     bottom: 0;
     width: 280px;
-    z-index: 1100;
+    z-index: 2100;
     transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
+  
   .sidebar.active { left: 0; }
   .sidebar-toggle { display: none; }
   
-  /* Mostrar navegación inferior solo en móvil */
   .mobile-bottom-nav { display: block; }
+
+  /* OCULTAR NAVEGACIÓN REDUNDANTE EN MÓVIL */
+  .nav-controls {
+    display: none !important; /* Quitamos los botones feos de en medio */
+  }
   
-  /* Ajustar player para dejar espacio a la barra inferior */
   .player-container {
-    padding-bottom: 80px; 
+    padding-bottom: 90px; /* Más espacio para la nueva barra */
   }
 
   .sidebar-overlay {
@@ -530,8 +544,8 @@
     position: fixed;
     inset: 0;
     background: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(2px);
-    z-index: 1050;
+    backdrop-filter: blur(4px);
+    z-index: 2050;
   }
   .sidebar-overlay.active { display: block; }
 }
