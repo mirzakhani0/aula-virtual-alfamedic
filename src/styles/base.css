@@ -117,7 +117,7 @@ body {
   letter-spacing: 0.05em;
 }
 
-.btn-enter, .btn-start {
+.btn-enter {
   font-family: var(--font-family);
   background: linear-gradient(135deg, #007BFF 0%, #0056b3 100%);
   color: #FFFFFF;
@@ -125,38 +125,229 @@ body {
   padding: 18px 48px;
   border-radius: 14px;
   font-size: 17px;
-  font-weight: 800; /* Extra negrita para Lexend */
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  font-weight: 700;
   cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 12px;
   margin: 0 auto;
-  box-shadow: 0 20px 25px -5px rgba(0, 123, 255, 0.3);
+  box-shadow: 0 20px 25px -5px rgba(0, 123, 255, 0.3), 0 10px 10px -5px rgba(0, 123, 255, 0.1);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  width: auto;
-  min-width: 250px;
 }
 
-.btn-enter:hover, .btn-start:hover {
-  transform: translateY(-4px) scale(1.02);
+.btn-enter:hover {
+  transform: translateY(-4px);
   box-shadow: 0 25px 30px -5px rgba(0, 123, 255, 0.4);
   filter: brightness(1.1);
 }
 
-.btn-enter:active, .btn-start:active {
+.btn-enter:active {
   transform: translateY(-1px);
 }
 
-.btn-enter i, .btn-start i {
+.btn-enter i {
   transition: transform 0.3s ease;
-  font-size: 1.2em;
 }
 
-.btn-enter:hover i, .btn-start:hover i {
+.btn-enter:hover i {
   transform: translateX(5px);
+}
+
+.landing-footer {
+  margin-top: 64px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #9ca3af;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.landing-contact {
+  margin-top: 8px;
+}
+
+.landing-contact a {
+  color: #007BFF;
+  text-decoration: none;
+  font-weight: 700;
+  transition: color 0.3s ease;
+}
+
+.landing-contact a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+.landing-contact i {
+  margin-right: 6px;
+  color: #FFC107;
+}
+
+/* Ocultar App cuando la landing está visible */
+body.show-landing .header,
+body.show-landing .main-container,
+body.show-landing .mobile-bottom-nav {
+  display: none !important;
+}
+
+/* Transición de salida */
+.landing-page.hide {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-20px);
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 640px) {
+  .landing-features {
+    gap: 20px;
+  }
+  .feature-item i { width: 48px; height: 48px; font-size: 20px; }
+  .feature-item span { font-size: 10px; }
+  .btn-enter { padding: 16px 36px; width: 100%; justify-content: center; }
+}
+
+/* ============================================
+   INSTRUCTIONS PAGE STYLES
+   ============================================ */
+
+.instructions-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Permitir que el contenido empiece arriba */
+  z-index: 9999;
+  transition: all 0.6s ease;
+  color: #1a1a1b;
+  text-align: center;
+  overflow-y: auto; /* Habilitar scroll vertical */
+  -webkit-overflow-scrolling: touch;
+}
+
+.instructions-content {
+  width: 100%;
+  max-width: 1000px;
+  padding: 60px 24px; /* Más padding superior e inferior */
+  animation: fadeIn 0.8s ease-out;
+  flex-shrink: 0; /* Evitar que el contenido se encoja */
+}
+
+.instructions-title {
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  font-weight: 800;
+  margin-bottom: 12px;
+  color: #000;
+  letter-spacing: -0.02em;
+}
+
+.instructions-subtitle {
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  color: #4b5563;
+  margin-bottom: 50px;
+}
+
+.steps-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 32px;
+  margin-bottom: 60px;
+}
+
+.step-card {
+  background: #f8fafc;
+  padding: 48px 32px;
+  border-radius: 24px;
+  position: relative;
+  transition: all 0.3s ease;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.step-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
+  border-color: #007BFF;
+}
+
+.step-number {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #007BFF;
+  color: white;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 18px;
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+}
+
+.step-card i {
+  font-size: 40px;
+  color: #FFC107;
+  margin-bottom: 24px;
+  background: white;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  box-shadow: 0 8px 15px rgba(0,0,0,0.03);
+}
+
+.step-card h3 {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  color: #000;
+}
+
+.step-card p {
+  font-size: 14px;
+  color: #64748b;
+  line-height: 1.6;
+}
+
+.btn-start {
+  font-family: var(--font-family);
+  background: linear-gradient(135deg, #007BFF 0%, #0056b3 100%);
+  color: #FFFFFF;
+  border: none;
+  padding: 18px 50px;
+  border-radius: 16px;
+  font-size: 18px;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 auto;
+  box-shadow: 0 20px 25px -5px rgba(0, 123, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.btn-start:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
 }
 
 .instructions-page.hide {
