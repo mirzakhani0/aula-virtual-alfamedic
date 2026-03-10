@@ -390,10 +390,6 @@ export class App {
 
       if (this.state.flat.length > 0) {
         this.selectItem(this.state.flat[0].id);
-
-        if (this.state.isMobile) {
-          showToast(this.elements.toast, `${this.state.flat.length} recursos cargados`);
-        }
       } else {
         this.player.renderEmpty();
       }
@@ -411,10 +407,6 @@ export class App {
   private refreshData(): void {
     if (this.state.currentSheet) {
       this.navigation.showRefreshAnimation();
-
-      if (this.state.isMobile) {
-        showToast(this.elements.toast, 'Actualizando...');
-      }
 
       this.loadCourse(this.state.currentSheet);
     }
@@ -552,20 +544,10 @@ export class App {
 
     if (newIndex >= 0 && newIndex < this.state.flat.length) {
       this.selectItem(this.state.flat[newIndex].id);
-
-      if (this.state.isMobile) {
-        const position = `${newIndex + 1} de ${this.state.flat.length}`;
-        showToast(this.elements.toast, position, 1500);
-      }
     } else {
       // Llegamos al inicio o final
       if (this.state.isMobile) {
         vibrate([20, 50, 20]);
-        if (direction > 0) {
-          showToast(this.elements.toast, 'Último recurso', 1500);
-        } else {
-          showToast(this.elements.toast, 'Primer recurso', 1500);
-        }
       }
     }
   }
