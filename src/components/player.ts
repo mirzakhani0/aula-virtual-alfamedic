@@ -58,63 +58,60 @@ export class Player {
    * Renderiza contenido embebido
    */
   private renderEmbedded(item: CourseItem): void {
-    // Detectar tipo de contenido
+    const isDriveVideo = item.url.includes('drive.google.com') && item.type === 'video';
     const isPDF = item.mime === 'application/pdf' || item.type === 'pdf' || item.url.includes('.pdf');
 
-    // Mejorar URL según tipo de contenido
-    let enhancedUrl = item.embedUrl;
-
-    if (isPDF && item.embedUrl.includes('drive.google.com')) {
-      // Mejorar PDFs de Google Drive para permitir zoom
-      enhancedUrl = item.embedUrl.includes('?')
-        ? `${item.embedUrl}&embedded=true&rm=minimal`
-        : `${item.embedUrl}?embedded=true&rm=minimal`;
-    }
-
-    const iframe = document.createElement('iframe');
-    iframe.allow = 'autoplay; clipboard-write; encrypted-media; picture-in-picture; fullscreen';
-    iframe.referrerPolicy = 'strict-origin-when-cross-origin';
-    iframe.allowFullscreen = true;
-    iframe.src = enhancedUrl;
-    iframe.title = item.name || 'Contenido embebido';
-    iframe.loading = 'lazy';
-
-    // Agregar atributos específicos para PDFs
-    if (isPDF) {
-      iframe.setAttribute('scrolling', 'yes');
-    }
-
     this.playerElement.innerHTML = '';
-    this.playerElement.appendChild(iframe);
-    this.currentIframe = iframe;
 
-    // Agregar botón de acceso directo si falla el embed
+    if (isDriveVideo) {
+      // REPRODUCTOR NATIVO PARA GOOGLE DRIVE (Bypassa bloqueos de iframe)
+      const fileId = item.url.match(/\/d\/([^/]+)/);
+      const videoSrc = fileId ? `https://drive.google.com/uc?export=download&id=${fileId[1]}` : item.url;
+      
+      this.playerElement.innerHTML = `
+        <video controls controlsList="nodownload" style="width: 100%; height: 100%; border-radius: 12px; background: black;">
+          <source src="${videoSrc}" type="video/mp4">
+          Tu navegador no soporta el reproductor de video.
+        </video>
+      `;
+    } else {
+      // Mantener iframe para YouTube y PDFs
+      let enhancedUrl = item.embedUrl;
+      if (isPDF && item.embedUrl.includes('drive.google.com')) {
+        enhancedUrl = item.embedUrl.includes('?') ? `${item.embedUrl}&embedded=true` : `${item.embedUrl}?embedded=true`;
+      }
+
+      const iframe = document.createElement('iframe');
+      iframe.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+      iframe.allowFullscreen = true;
+      iframe.src = enhancedUrl;
+      iframe.style.width = '100%';
+      iframe.style.height = '100%';
+      iframe.style.border = 'none';
+      this.playerElement.appendChild(iframe);
+      this.currentIframe = iframe;
+    }
+
+    // Botón de acceso directo como Plan B
     const directLink = document.createElement('a');
     directLink.href = item.url;
     directLink.target = '_blank';
     directLink.className = 'direct-access-link';
-    directLink.innerHTML = '<i class="fas fa-external-link-alt"></i> Abrir directamente si no carga';
+    directLink.innerHTML = '<i class="fas fa-external-link-alt"></i> Ver en Google Drive';
     directLink.style.cssText = `
       position: absolute;
-      bottom: 10px;
-      right: 10px;
-      background: rgba(0, 65, 106, 0.8);
+      bottom: 20px;
+      right: 20px;
+      background: rgba(0, 65, 106, 0.9);
       color: white;
-      padding: 8px 12px;
-      border-radius: 20px;
-      font-size: 12px;
+      padding: 10px 16px;
+      border-radius: 30px;
+      font-size: 13px;
       text-decoration: none;
-      z-index: 10;
-      backdrop-filter: blur(4px);
-      transition: all 0.3s ease;
+      z-index: 100;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     `;
     this.playerElement.appendChild(directLink);
-
-    // Agregar overlay para capturar gestos en móvil
-    if (window.innerWidth <= 768) {
-      this.addTouchOverlay();
-      this.addFloatingControls();
-    }
   }
 
   /**
