@@ -24,39 +24,24 @@
    ============================================ */
 @media (max-width: 768px) {
   .header {
-    padding: 0 10px;
+    padding: 0 8px;
     height: 60px;
     justify-content: space-between;
-    gap: 8px;
-  }
-
-  .logo {
-    gap: 6px;
-    min-width: 0;
-  }
-
-  .logo i { 
-    display: none !important; /* Ocultar sombrerito en móvil */
+    gap: 4px;
   }
 
   .logo-text {
-    overflow: hidden;
+    display: none !important; /* Ocultar texto del logo en móvil para evitar desorden */
   }
 
-  .logo-main { 
-    font-size: 0.85rem; 
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  .logo {
+    min-width: 0;
+    gap: 0;
   }
 
-  .logo-sub { 
-    font-size: 0.65rem; 
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  .logo i { 
+    display: none !important; /* Ocultar también el icono si existiera */
   }
-
   /* Ajuste de Dashboard para móviles */
   .dashboard {
     padding: 20px 16px;
