@@ -25,13 +25,38 @@
 @media (max-width: 768px) {
   .header {
     padding: 0 10px;
-    height: 56px;
+    height: 60px;
     justify-content: space-between;
+    gap: 8px;
   }
 
-  .logo i { font-size: 1.2rem; }
-  .logo-main { font-size: 0.8rem; }
-  .logo-sub { font-size: 0.6rem; }
+  .logo {
+    gap: 6px;
+    min-width: 0;
+  }
+
+  .logo i { 
+    font-size: 1.3rem; 
+    flex-shrink: 0;
+  }
+
+  .logo-text {
+    overflow: hidden;
+  }
+
+  .logo-main { 
+    font-size: 0.85rem; 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .logo-sub { 
+    font-size: 0.65rem; 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
   /* Ajuste de Dashboard para móviles */
   .dashboard {
