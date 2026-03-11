@@ -36,8 +36,7 @@
   }
 
   .logo i { 
-    font-size: 1.3rem; 
-    flex-shrink: 0;
+    display: none !important; /* Ocultar sombrerito en móvil */
   }
 
   .logo-text {
